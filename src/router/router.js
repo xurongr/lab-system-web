@@ -57,6 +57,24 @@ export const otherRouter = {
       name: "home_index",
       component: () => import("@/views/home/home.vue")
     },
+      {
+          path: "addStore",
+          title: "新增店铺",
+          name: "addStore",
+          component: () => import("@/views/storeManagement/storeInfo.vue")
+      },
+      {
+          path: "editStore",
+          title: "编辑店铺",
+          name: "editStore",
+          component: () => import("@/views/storeManagement/storeInfo.vue")
+      },
+      {
+          path: "staffManagement",
+          title: "员工管理",
+          name: "staffManagement",
+          component: () => import("@/views/storeManagement/staffManagement.vue")
+      },
   ]
 };
 
@@ -64,9 +82,9 @@ export const otherRouter = {
 export const appRouter = [
     {
         path: "/systemManagement",
-        icon: "ios-folder-outline",
+        // icon: "ios-folder-outline",
         name: "systemManagement",
-        // access: 0,
+        access: 0,
         title: "系统管理",
         component: Main,
         children: [
@@ -84,6 +102,89 @@ export const appRouter = [
                 access: 0,
                 component: () => import("@/views/systemManagement/rewardSettings")
             }
+        ]
+    },
+    {
+        path: "/memberManagement",
+        name: "memberManagement",
+        access: 0,
+        title: "会员管理",
+        component: Main,
+        children: [
+            {
+                path: "memberList",
+                title: "会员列表",
+                name: "memberList",
+                access: 0,
+                component: () => import("@/views/memberManagement/index")
+            },
+            {
+                path: "memberLevel",
+                title: "会员等级管理",
+                name: "memberLevel",
+                access: 0,
+                component: () => import("@/views/memberManagement/memberLevel")
+            },
+            {
+                path: "memberCard",
+                title: "会员卡管理",
+                name: "memberCard",
+                access: 0,
+                component: () => import("@/views/memberManagement/memberCard")
+            },
+        ]
+    },
+    {
+        path: "/orderManagement",
+        name: "orderManagement",
+        access: 0,
+        title: "订单管理",
+        component: Main,
+        children: [
+            {
+                path: "rechargeOrder",
+                title: "充值订单",
+                name: "rechargeOrder",
+                access: 0,
+                component: () => import("@/views/orderManagement/rechargeOrder")
+            },
+            {
+                path: "consumeOrder",
+                title: "消费订单",
+                name: "consumeOrder",
+                access: 0,
+                component: () => import("@/views/orderManagement/consumeOrder")
+            },
+            // {
+            //     path: "customizedOrder",
+            //     title: "定制订单",
+            //     name: "customizedOrder",
+            //     access: 0,
+            //     component: () => import("@/views/orderManagement/customizedOrder")
+            // },
+        ]
+    },
+    {
+        path: "/storeManagement",
+        name: "storeManagement",
+        access: 0,
+        title: "门店管理",
+        component: Main,
+        children: [
+            {
+                path: "storeList",
+                title: "门店列表",
+                name: "storeList",
+                access: 0,
+                component: () => import("@/views/storeManagement/index")
+            },
+            {
+                path: "storeData",
+                title: "门店数据",
+                name: "storeData",
+                access: 0,
+                component: () => import("@/views/storeManagement/storeData")
+            },
         ]
     },
 ];

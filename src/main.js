@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { formatDate, timestamp } from "./utils/date.js";
 import "@/styles/commoon.less";
+import "@/styles/btn.less";
 import { Store } from "vuex";
 import "promise-polyfill";
 import VueAMap from "vue-amap";

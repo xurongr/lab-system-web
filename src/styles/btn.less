@@ -1,0 +1,32 @@
+.btn {
+  width: 80px;
+  height: 30px;
+  line-height: 15px;
+  overflow: hidden;
+  font-size: 14px;
+  background-color: #fff;
+  border-radius:18px;
+  text-align: center;
+  padding: 0;
+  -webkit-tap-highlight-color:transparent; // 去除手机端点击蓝色底色
+  &.btn-blue{
+    color: #2baee9;
+    border-color: #2baee9;
+    //background: #2ab3ff;
+    //background:linear-gradient(180deg, #41c8ff 0%, #2ab3ff 100%);
+  }
+  &.btn-b-hover {
+    color: #444;
+    border-color: #444;
+    &:hover {
+      border-color: #2baee9;
+    }
+  }
+  &.btn-r-hover {
+    color: #444;
+    border-color: #444;
+    &:hover {
+      border-color: red;
+    }
+  }
+}

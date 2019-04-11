@@ -43,6 +43,7 @@ body {
   height: 100%;
   background: #f0f0f0;
   overflow: hidden;
+  font-size: 14px;
 }
 .app-main {
   width: 100%;
