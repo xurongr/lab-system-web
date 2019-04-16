@@ -58,7 +58,7 @@
 
 <script>
     export default {
-        data() {
+        data () {
             return {
                 keyWord: '',
                 phone: null,
@@ -98,90 +98,90 @@
                     {
                         value: '禁用',
                         label: '禁用'
-                    },
-                ],
-                start:false,
-                tableData: [],
-                total: 0,
-                levelSet: false,    //等级设置弹框
-                table: [
-                    {
-                        title: "序号",
-                        type: "index",
-                        align: 'center',
-                        width: 60,
-                    },
-                    {
-                        title: "会员名称",
-                        align: 'center',
-                        key: ""
-                    },
-                    {
-                        title: "手机号码",
-                        align: 'center',
-                        key: "",
-                    },
-                    {
-                        title: "店铺名称",
-                        align: 'center',
-                        key: "",
-                    },
-                    {
-                        title: "会员等级",
-                        align: 'center',
-                        key: "",
-                    },
-                    {
-                        title: "复购金额30%",
-                        align: 'center',
-                        key: "",
-                        sortable: "custom"    //是否可远程排序，需要监听on-sort-change事件
-                    },
-                    {
-                        title: "可提现金额70%",
-                        align: 'center',
-                        key: "",
-                        sortable: "custom",
-                    },
-                    {
-                        title: "性别",
-                        align: 'center',
-                        key: "",
-                    },
-                    {
-                        title: "生日",
-                        align: 'center',
-                        key: "",
-                    },
-                    {
-                        title: "状态",
-                        align: 'center',
-                        key: "",
-                    },
-                    {
-                        title: "创建时间",
-                        align: 'center',
-                        key: "",
-                    },
-                    {
-                        title: "最后一次登录时间",
-                        align: 'center',
-                        key: "",
                     }
                 ],
-            }
+                start: false,
+                tableData: [],
+                total: 0,
+                levelSet: false, // 等级设置弹框
+                table: [
+                    {
+                        title: '序号',
+                        type: 'index',
+                        align: 'center',
+                        width: 60
+                    },
+                    {
+                        title: '会员名称',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '手机号码',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '店铺名称',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '会员等级',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '复购金额30%',
+                        align: 'center',
+                        key: '',
+                        sortable: 'custom' // 是否可远程排序，需要监听on-sort-change事件
+                    },
+                    {
+                        title: '可提现金额70%',
+                        align: 'center',
+                        key: '',
+                        sortable: 'custom'
+                    },
+                    {
+                        title: '性别',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '生日',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '状态',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '创建时间',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '最后一次登录时间',
+                        align: 'center',
+                        key: ''
+                    }
+                ]
+            };
         },
 
-        created() {
+        created () {
 
         },
 
         methods: {
-            isLevelSet() {
+            isLevelSet () {
                 this.levelSet = true;
-            },
+            }
         }
-    }
+    };
 </script>
 
 <style lang="less" scoped>

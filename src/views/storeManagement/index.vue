@@ -56,7 +56,7 @@
 
 <script>
     export default {
-        data() {
+        data () {
             return {
                 keyWord: '',
                 phone: null,
@@ -96,95 +96,95 @@
                     {
                         value: '禁用',
                         label: '禁用'
-                    },
+                    }
                 ],
-                start:false,
+                start: false,
                 tableData: [],
                 total: 0,
                 incomeModal: false,
                 paramsModal: false,
                 table: [
                     {
-                        title: "序号",
-                        type: "index",
+                        title: '序号',
+                        type: 'index',
                         align: 'center',
-                        width: 60,
+                        width: 60
                     },
                     {
-                        title: "店铺ID",
+                        title: '店铺ID',
                         align: 'center',
-                        key: ""
+                        key: ''
                     },
                     {
-                        title: "店铺名称",
+                        title: '店铺名称',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "描述",
+                        title: '描述',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "地址",
+                        title: '地址',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "负责人",
+                        title: '负责人',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "创建时间",
+                        title: '创建时间',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "更新时间",
+                        title: '更新时间',
                         align: 'center',
-                        key: "",
+                        key: ''
                     }
-                ],
-            }
+                ]
+            };
         },
 
-        created() {
+        created () {
 
         },
 
         methods: {
-            modalSet(num) {
-                if(num === 1) {
+            modalSet (num) {
+                if (num === 1) {
                     this.incomeModal = true;
-                } else if(num === 2) {
+                } else if (num === 2) {
                     this.paramsModal = true;
                 }
             },
-            goInfoStore(num) {
-                if(num === 1) {
+            goInfoStore (num) {
+                if (num === 1) {
                     this.$router.push({
                         path: '/addStore',
                         query: {
                             flag: num
                         }
-                    })
-                } else if(num === 2){
+                    });
+                } else if (num === 2) {
                     this.$router.push({
                         path: '/editStore',
                         query: {
                             flag: num
                         }
-                    })
+                    });
                 }
             },
-            goStaffManage() {
+            goStaffManage () {
                 this.$router.push({
-                    path: '/staffManagement',
-                })
-            },
+                    path: '/staffManagement'
+                });
+            }
         }
-    }
+    };
 </script>
 
 <style lang="less" scoped>

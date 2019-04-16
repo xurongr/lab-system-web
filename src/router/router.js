@@ -75,6 +75,30 @@ export const otherRouter = {
           name: "staffManagement",
           component: () => import("@/views/storeManagement/staffManagement.vue")
       },
+      {
+          path: "addVideo",
+          title: "新增视频",
+          name: "addVideo",
+          component: () => import("@/views/operationManagement/videoDetail.vue")
+      },
+      {
+          path: "editVideo",
+          title: "编辑视频",
+          name: "editVideo",
+          component: () => import("@/views/operationManagement/videoDetail.vue")
+      },
+      {
+          path: "addArticle",
+          title: "新增文章",
+          name: "addArticle",
+          component: () => import("@/views/operationManagement/articleDetail.vue")
+      },
+      {
+          path: "editArticle",
+          title: "编辑文章",
+          name: "editArticle",
+          component: () => import("@/views/operationManagement/articleDetail.vue")
+      },
   ]
 };
 
@@ -184,6 +208,59 @@ export const appRouter = [
                 name: "storeData",
                 access: 0,
                 component: () => import("@/views/storeManagement/storeData")
+            },
+        ]
+    },
+    {
+        path: "/financialManagement",
+        name: "financialManagement",
+        access: 0,
+        title: "财务管理",
+        component: Main,
+        children: [
+            {
+                path: "dataSum",
+                title: "数据汇总",
+                name: "dataSum",
+                access: 0,
+                component: () => import("@/views/financialManagement/index")
+            },
+            {
+                path: "cashWithdrawal",
+                title: "提现管理",
+                name: "cashWithdrawal",
+                access: 0,
+                component: () => import("@/views/financialManagement/cashWithdrawal")
+            },
+        ]
+    },
+    {
+        path: "/operationManagement",
+        name: "operationManagement",
+        access: 0,
+        title: "运营管理",
+        component: Main,
+        children: [
+            {
+                path: "videoManage",
+                title: "视频管理",
+                name: "videoManage",
+                access: 0,
+                component: () => import("@/views/operationManagement/index")
+            },
+            {
+                path: "articleManage",
+                title: "文章管理",
+                name: "articleManage",
+                access: 0,
+                component: () => import("@/views/operationManagement/articleManage")
+            },
+            {
+                path: "extensionManage",
+                title: "素材管理（推广）",
+                name: "extensionManage",
+                access: 0,
+                component: () => import("@/views/operationManagement/extensionManage")
             },
         ]
     },

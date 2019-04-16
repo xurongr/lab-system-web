@@ -45,13 +45,15 @@
         </div>
         <div class="store-data-detail">
             <p>数据明细</p>
+            <Table class="cc-m-t-10" border :columns="table" :data="tableData"></Table>
+            <div class="page"><Page class="cc-m-t-20" :total="total" :key="total"></Page></div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        data() {
+        data () {
             return {
                 level: '全部',
                 levelList: [
@@ -77,15 +79,55 @@
                     }
                 ],
                 date: '',
-            }
+                tableData: [],
+                total: 0,
+                table: [
+                    {
+                        title: '序号',
+                        type: 'index',
+                        align: 'center',
+                        width: 60
+                    },
+                    {
+                        title: '时间',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '收益总数',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '充值收益',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '消费收益',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '定制收益',
+                        align: 'center',
+                        key: ''
+                    },
+                    {
+                        title: '商城收益',
+                        align: 'center',
+                        key: ''
+                    }
+                ]
+            };
         },
 
-        created() {
+        created () {
 
         },
 
-        methods: {},
-    }
+        methods: {}
+    };
 </script>
 
 <style lang="less" scoped>

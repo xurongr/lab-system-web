@@ -28,37 +28,37 @@
 
 <script>
 export default {
-  name: "sidebarMenu",
-  props: {
-    menuList: Array,
-    iconSize: Number,
-    menuTheme: {
-      type: String,
-      default: "dark"
+    name: 'sidebarMenu',
+    props: {
+        menuList: Array,
+        iconSize: Number,
+        menuTheme: {
+            type: String,
+            default: 'dark'
+        },
+        openNames: {
+            type: Array
+        }
     },
-    openNames: {
-      type: Array
-    }
-  },
-  methods: {
-    changeMenu(active) {
-      this.$emit("on-change", active);
+    methods: {
+        changeMenu (active) {
+            this.$emit('on-change', active);
+        },
+        itemTitle (item) {
+            if (typeof item.title === 'object') {
+                return this.$t(item.title.i18n);
+            } else {
+                return item.title;
+            }
+        }
     },
-    itemTitle(item) {
-      if (typeof item.title === "object") {
-        return this.$t(item.title.i18n);
-      } else {
-        return item.title;
-      }
+    created () {
+        this.$nextTick(() => {
+            if (this.$refs.sideMenu) {
+                this.$refs.sideMenu.updateActiveName();
+                this.$refs.sideMenu.updateOpened();
+            }
+        });
     }
-  },
-  created() {
-    this.$nextTick(() => {
-      if (this.$refs.sideMenu) {
-        this.$refs.sideMenu.updateActiveName();
-        this.$refs.sideMenu.updateOpened();
-      }
-    });
-  }
 };
 </script>

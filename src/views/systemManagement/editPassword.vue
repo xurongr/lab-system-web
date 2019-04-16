@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        data() {
+        data () {
             const valiPass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入旧密码'));
@@ -33,7 +33,7 @@
             const validatePass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入密码'));
-                } else if(value === this.formCustom.passPwd){
+                } else if (value === this.formCustom.passPwd) {
                     callback(new Error('新旧密码不能一致，请重新设置'));
                 } else {
                     if (this.formCustom.passwdCheck !== '') {
@@ -56,23 +56,23 @@
                 formCustom: {
                     passPwd: '',
                     pwd: '',
-                    passwdCheck: '',
+                    passwdCheck: ''
                 },
                 ruleCustom: {
                     passPwd: [
-                        {required: true,  validator: valiPass, trigger: 'blur' }
+                        {required: true, validator: valiPass, trigger: 'blur' }
                     ],
                     pwd: [
-                        {required: true,  validator: validatePass, trigger: 'blur' }
+                        {required: true, validator: validatePass, trigger: 'blur' }
                     ],
                     passwdCheck: [
-                        {required: true,  validator: validatePassCheck, trigger: 'blur' }
-                    ],
+                        {required: true, validator: validatePassCheck, trigger: 'blur' }
+                    ]
                 }
-            }
+            };
         },
 
-        created() {
+        created () {
 
         },
 
@@ -84,10 +84,10 @@
                     } else {
                         this.$Message.error('Fail!');
                     }
-                })
-            },
-        },
-    }
+                });
+            }
+        }
+    };
 </script>
 
 <style lang="less" scoped>

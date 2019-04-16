@@ -105,7 +105,7 @@
 
 <script>
     export default {
-        data() {
+        data () {
             return {
                 keyWord: '',
                 phone: null,
@@ -145,125 +145,125 @@
                     {
                         value: '禁用',
                         label: '禁用'
-                    },
+                    }
                 ],
-                start:false,
+                start: false,
                 tableData: [],
                 total: 0,
-                modal: false,    //弹框
+                modal: false, // 弹框
                 ruleModal: false,
-                flag: 1,     //1-新增  2-编辑
+                flag: 1, // 1-新增  2-编辑
                 table: [
                     {
-                        title: "序号",
-                        type: "index",
+                        title: '序号',
+                        type: 'index',
                         align: 'center',
-                        width: 60,
+                        width: 60
                     },
                     {
-                        title: "等级名称",
+                        title: '等级名称',
                         align: 'center',
-                        key: ""
+                        key: ''
                     },
                     {
-                        title: "直推奖励",
+                        title: '直推奖励',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "间推奖励",
+                        title: '间推奖励',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "市场补贴",
+                        title: '市场补贴',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "公排奖励",
+                        title: '公排奖励',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "状态",
+                        title: '状态',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "创建时间",
+                        title: '创建时间',
                         align: 'center',
-                        key: "",
+                        key: ''
                     }
                 ],
                 ruleTable: [
                     {
-                        title: "序号",
-                        type: "index",
+                        title: '序号',
+                        type: 'index',
                         align: 'center',
-                        width: 60,
+                        width: 60
                     },
                     {
-                        title: "升级前等级",
+                        title: '升级前等级',
                         align: 'center',
-                        key: ""
+                        key: ''
                     },
                     {
-                        title: "升级后等级",
+                        title: '升级后等级',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "充值金额",
+                        title: '充值金额',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "推广类型",
+                        title: '推广类型',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "推广会员等级",
+                        title: '推广会员等级',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "推广数量",
+                        title: '推广数量',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "状态",
+                        title: '状态',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "创建时间",
+                        title: '创建时间',
                         align: 'center',
-                        key: "",
+                        key: ''
                     }
-                ],
-            }
+                ]
+            };
         },
 
-        created() {
+        created () {
 
         },
 
         methods: {
-            //会员等级弹框
-            isModal(num) {
+            // 会员等级弹框
+            isModal (num) {
                 this.modal = true;
                 this.flag = num;
             },
-            //升级规则弹框
-            isRuleModal(num) {
+            // 升级规则弹框
+            isRuleModal (num) {
                 this.ruleModal = true;
                 this.flag = num;
-            },
+            }
         }
-    }
+    };
 </script>
 
 <style lang="less" scoped>

@@ -40,9 +40,9 @@
 </template>
 
 <script>
-    import excel from '@/libs/excel'
+    import excel from '@/libs/excel';
     export default {
-        data() {
+        data () {
             return {
                 keyWord: '',
                 phone: null,
@@ -82,111 +82,111 @@
                     {
                         value: '禁用',
                         label: '禁用'
-                    },
+                    }
                 ],
-                start:false,
+                start: false,
                 tableData: [],
                 total: 0,
-                levelSet: false,    //等级设置弹框
+                levelSet: false, // 等级设置弹框
                 exportLoading: false,
                 table: [
                     {
                         type: 'selection',
-                        width: 60,
+                        width: 60
                     },
                     {
-                        title: "序号",
-                        type: "index",
+                        title: '序号',
+                        type: 'index',
                         align: 'center',
-                        width: 70,
+                        width: 70
                     },
                     {
-                        title: "会员名称",
+                        title: '会员名称',
                         align: 'center',
-                        key: ""
+                        key: ''
                     },
                     {
-                        title: "手机号码",
+                        title: '手机号码',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "店铺名称",
+                        title: '店铺名称',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "会员等级",
+                        title: '会员等级',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "复购金额30%",
+                        title: '复购金额30%',
                         align: 'center',
-                        key: "",
-                        sortable: "custom"    //是否可远程排序，需要监听on-sort-change事件
+                        key: '',
+                        sortable: 'custom' // 是否可远程排序，需要监听on-sort-change事件
                     },
                     {
-                        title: "可提现金额70%",
+                        title: '可提现金额70%',
                         align: 'center',
-                        key: "",
-                        sortable: "custom",
+                        key: '',
+                        sortable: 'custom'
                     },
                     {
-                        title: "性别",
+                        title: '性别',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "生日",
+                        title: '生日',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "状态",
+                        title: '状态',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "创建时间",
+                        title: '创建时间',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "最后一次登录时间",
+                        title: '最后一次登录时间',
                         align: 'center',
-                        key: "",
+                        key: ''
                     }
-                ],
-            }
+                ]
+            };
         },
 
-        created() {
+        created () {
 
         },
 
         methods: {
-            isLevelSet() {
+            isLevelSet () {
                 this.levelSet = true;
             },
             exportExcel () {
                 if (this.tableData.length) {
-                    this.exportLoading = true
+                    this.exportLoading = true;
                     const params = {
                         title: ['会员名称', '手机号码', '店铺名称'],
                         key: ['category1', 'category2', 'category3'],
                         data: this.tableData,
                         autoWidth: true,
                         filename: '充值订单'
-                    }
-                    excel.export_array_to_excel(params)
-                    this.exportLoading = false
+                    };
+                    excel.export_array_to_excel(params);
+                    this.exportLoading = false;
                 } else {
-                    this.$Message.info('表格数据不能为空！')
+                    this.$Message.info('表格数据不能为空！');
                 }
             }
         }
-    }
+    };
 </script>
 
 <style lang="less" scoped>

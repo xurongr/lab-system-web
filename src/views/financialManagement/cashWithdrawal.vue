@@ -5,13 +5,6 @@
                 <div class="m-search-top-left">
                     <p>会员名称 &nbsp;&nbsp;<Input v-model="keyWord" placeholder="关键字模糊搜索" style="width: 110px" /></p>
                     <p>手机号码 &nbsp;&nbsp;<Input v-model="phone" style="width: 110px" /></p>
-                    <p>店铺名称 &nbsp;&nbsp;<Input v-model="phone" style="width: 110px" /></p>
-                    <p>
-                        等级 &nbsp;&nbsp;
-                        <Select v-model="level" style="width:130px">
-                            <Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                        </Select>
-                    </p>
                     <p>
                         状态 &nbsp;&nbsp;
                         <Select v-model="state" style="width:130px">
@@ -19,16 +12,28 @@
                         </Select>
                     </p>
                 </div>
-                <p>会员卡总数：152,610</p>
+                <p>未打款10，已打款100</p>
             </div>
             <div class="m-search-btn">
                 <Button class="btn btn-blue">查询</Button>
+                <Button class="btn btn-blue" @click="isLevelSet">审核打款</Button>
             </div>
         </div>
         <div class="main-body">
             <Table class="cc-m-t-20" border :columns="table" :data="tableData"></Table>
             <div class="page"><Page class="cc-m-t-20" :total="total" :key="total"></Page></div>
         </div>
+        <Modal
+                v-model="levelSet"
+                :footer-hide="true"
+                :styles="{top: '30%'}">
+            <div class="level-setting">
+                <p>审核打款</p>
+                <p>打款金额&nbsp;&nbsp;<Input v-model="phone" style="width: 75%" /></p>
+                <p>线下打款多少，这边填写多少</p>
+                <div class="level-btn"><Button class="btn btn-blue">提交</Button></div>
+            </div>
+        </Modal>
     </div>
 </template>
 
@@ -79,17 +84,13 @@
                 start: false,
                 tableData: [],
                 total: 0,
+                levelSet: false, // 等级设置弹框
                 table: [
                     {
                         title: '序号',
                         type: 'index',
                         align: 'center',
                         width: 60
-                    },
-                    {
-                        title: '店铺ID',
-                        align: 'center',
-                        key: ''
                     },
                     {
                         title: '会员名称',
@@ -102,57 +103,47 @@
                         key: ''
                     },
                     {
-                        title: '性别',
+                        title: '提现金额',
                         align: 'center',
                         key: ''
                     },
                     {
-                        title: '会员等级',
+                        title: '剩余金额',
                         align: 'center',
                         key: ''
                     },
                     {
-                        title: '会员卡号',
+                        title: '收款账户',
                         align: 'center',
                         key: ''
                     },
                     {
-                        title: '会员卡ID',
+                        title: '收款银行',
                         align: 'center',
                         key: ''
                     },
                     {
-                        title: '余额',
+                        title: '银行卡号',
                         align: 'center',
                         key: ''
                     },
                     {
-                        title: '赠送金额',
+                        title: '支行',
                         align: 'center',
                         key: ''
                     },
                     {
-                        title: '实际充值金额',
+                        title: '状态',
                         align: 'center',
                         key: ''
                     },
                     {
-                        title: '支付累计金额',
+                        title: '创建时间',
                         align: 'center',
                         key: ''
                     },
                     {
-                        title: '消费累计金额',
-                        align: 'center',
-                        key: ''
-                    },
-                    {
-                        title: '折扣累计金额',
-                        align: 'center',
-                        key: ''
-                    },
-                    {
-                        title: '发卡时间',
+                        title: '打款时间',
                         align: 'center',
                         key: ''
                     }
@@ -165,11 +156,33 @@
         },
 
         methods: {
-
+            isLevelSet () {
+                this.levelSet = true;
+            }
         }
     };
 </script>
 
 <style lang="less" scoped>
-
+    .level-setting {
+        font-size: 14px;
+        p{
+            padding-top: 10px;
+            &:nth-child(1) {
+                text-align: center;
+                padding-top: 0;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+            &:nth-child(3) {
+                color: red;
+                font-size: 12px;
+                text-indent: 6em;
+            }
+        }
+        .level-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
 </style>

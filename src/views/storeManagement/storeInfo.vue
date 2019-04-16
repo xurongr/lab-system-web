@@ -38,34 +38,34 @@
 </template>
 
 <script>
-    import aliUpload from "@/views/my-components/ali-upload.vue";
+    import aliUpload from '@/views/my-components/ali-upload.vue';
     export default {
         components: {
             aliUpload
         },
-        data() {
+        data () {
             return {
-                flag: null,   //1-新增店铺  2-编辑店铺
+                flag: null, // 1-新增店铺  2-编辑店铺
                 formItem: {
                     input: '',
                     textarea: '',
-                    imageUrl:'',
+                    imageUrl: ''
                 }
-            }
+            };
         },
 
-        created() {
+        created () {
             this.flag = this.$route.query.flag;
         },
 
         methods: {
-            getUploadUrl(val) {
+            getUploadUrl (val) {
                 this.formItem.imageUrl = `${
                     val[0]
-                    }?x-oss-process=image/resize,m_fill,limit_0,h_390,w_750`;
-            },
-        },
-    }
+                }?x-oss-process=image/resize,m_fill,limit_0,h_390,w_750`;
+            }
+        }
+    };
 </script>
 
 <style lang="less" scoped>

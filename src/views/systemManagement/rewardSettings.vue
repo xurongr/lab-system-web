@@ -22,24 +22,24 @@
 
 <script>
     export default {
-        data() {
+        data () {
             return {
                 formCustom: {
                     reflect: '',
-                    profit: '',
+                    profit: ''
                 },
                 ruleCustom: {
                     reflect: [
-                        {required: true,  trigger: 'blur' }
+                        {required: true, trigger: 'blur' }
                     ],
                     profit: [
-                        {required: true,  trigger: 'blur' }
-                    ],
+                        {required: true, trigger: 'blur' }
+                    ]
                 }
-            }
+            };
         },
 
-        created() {
+        created () {
 
         },
 
@@ -51,10 +51,10 @@
                     } else {
                         this.$Message.error('Fail!');
                     }
-                })
-            },
-        },
-    }
+                });
+            }
+        }
+    };
 </script>
 
 <style lang="less" scoped>

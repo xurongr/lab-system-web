@@ -53,7 +53,7 @@
 
 <script>
     export default {
-        data() {
+        data () {
             return {
                 keyWord: '',
                 phone: null,
@@ -93,65 +93,65 @@
                     {
                         value: '禁用',
                         label: '禁用'
-                    },
+                    }
                 ],
-                start:false,
+                start: false,
                 tableData: [],
                 total: 0,
                 isModal: false,
-                flag: null,   //1-新增  2-编辑
+                flag: null, // 1-新增  2-编辑
                 table: [
                     {
-                        title: "序号",
-                        type: "index",
+                        title: '序号',
+                        type: 'index',
                         align: 'center',
-                        width: 60,
+                        width: 60
                     },
                     {
-                        title: "员工名称",
+                        title: '员工名称',
                         align: 'center',
-                        key: ""
+                        key: ''
                     },
                     {
-                        title: "手机号码",
+                        title: '手机号码',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "角色",
+                        title: '角色',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "状态",
+                        title: '状态',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "创建时间",
+                        title: '创建时间',
                         align: 'center',
-                        key: "",
+                        key: ''
                     },
                     {
-                        title: "更新时间",
+                        title: '更新时间',
                         align: 'center',
-                        key: "",
+                        key: ''
                     }
-                ],
-            }
+                ]
+            };
         },
 
-        created() {
+        created () {
 
         },
 
         methods: {
-            modalSet(num) {
+            modalSet (num) {
                 this.isModal = true;
                 this.flag = num;
-            },
+            }
         }
-    }
+    };
 </script>
 
 <style lang="less" scoped>
