@@ -106,7 +106,7 @@ export const otherRouter = {
 export const appRouter = [
     {
         path: "/systemManagement",
-        // icon: "ios-folder-outline",
+        icon: "i iconfont icon-my_shezhi_ico",
         name: "systemManagement",
         access: 0,
         title: "系统管理",
@@ -114,6 +114,7 @@ export const appRouter = [
         children: [
             {
                 path: "editPassword",
+                icon: "i iconfont icon-guanli",
                 title: "修改密码",
                 name: "editPassword",
                 access: 0,
@@ -121,6 +122,7 @@ export const appRouter = [
             },
             {
                 path: "rewardSettings",
+                icon: "i iconfont icon-guanli",
                 title: "奖励设置",
                 name: "rewardSettings",
                 access: 0,
@@ -130,6 +132,7 @@ export const appRouter = [
     },
     {
         path: "/memberManagement",
+        icon: "i iconfont icon-kehuhuiyuanguanli",
         name: "memberManagement",
         access: 0,
         title: "会员管理",
@@ -137,6 +140,7 @@ export const appRouter = [
         children: [
             {
                 path: "memberList",
+                icon: "i iconfont icon-guanli",
                 title: "会员列表",
                 name: "memberList",
                 access: 0,
@@ -144,6 +148,7 @@ export const appRouter = [
             },
             {
                 path: "memberLevel",
+                icon: "i iconfont icon-guanli",
                 title: "会员等级管理",
                 name: "memberLevel",
                 access: 0,
@@ -151,6 +156,7 @@ export const appRouter = [
             },
             {
                 path: "memberCard",
+                icon: "i iconfont icon-guanli",
                 title: "会员卡管理",
                 name: "memberCard",
                 access: 0,
@@ -158,8 +164,32 @@ export const appRouter = [
             },
         ]
     },
+    // {
+    //     path: "/aaManagement",
+    //     icon: "i iconfont icon-icon--",
+    //     name: "aaManagement",
+    //     access: 0,
+    //     title: "菜品管理",
+    //     component: Main,
+    //     children: [
+    //         {
+    //             path: "rechargeOrder",
+    //             title: "充值订单",
+    //             name: "rechargeOrder",
+    //             access: 0,
+    //             component: () => import("@/views/orderManagement/rechargeOrder")
+    //         },
+    //         {
+    //             path: "",
+    //             title: "",
+    //             name: "",
+    //             access: 0,
+    //         },
+    //     ]
+    // },
     {
         path: "/orderManagement",
+        icon: "i iconfont icon-dingdan",
         name: "orderManagement",
         access: 0,
         title: "订单管理",
@@ -167,6 +197,7 @@ export const appRouter = [
         children: [
             {
                 path: "rechargeOrder",
+                icon: "i iconfont icon-guanli",
                 title: "充值订单",
                 name: "rechargeOrder",
                 access: 0,
@@ -174,6 +205,7 @@ export const appRouter = [
             },
             {
                 path: "consumeOrder",
+                icon: "i iconfont icon-guanli",
                 title: "消费订单",
                 name: "consumeOrder",
                 access: 0,
@@ -181,6 +213,7 @@ export const appRouter = [
             },
             // {
             //     path: "customizedOrder",
+            //     icon: "i iconfont icon-guanli",
             //     title: "定制订单",
             //     name: "customizedOrder",
             //     access: 0,
@@ -190,6 +223,7 @@ export const appRouter = [
     },
     {
         path: "/storeManagement",
+        icon: "i iconfont icon-dianpuguanli",
         name: "storeManagement",
         access: 0,
         title: "门店管理",
@@ -197,6 +231,7 @@ export const appRouter = [
         children: [
             {
                 path: "storeList",
+                icon: "i iconfont icon-guanli",
                 title: "门店列表",
                 name: "storeList",
                 access: 0,
@@ -204,6 +239,7 @@ export const appRouter = [
             },
             {
                 path: "storeData",
+                icon: "i iconfont icon-guanli",
                 title: "门店数据",
                 name: "storeData",
                 access: 0,
@@ -213,6 +249,7 @@ export const appRouter = [
     },
     {
         path: "/financialManagement",
+        icon: "i iconfont icon-yunliankeji-",
         name: "financialManagement",
         access: 0,
         title: "财务管理",
@@ -220,6 +257,7 @@ export const appRouter = [
         children: [
             {
                 path: "dataSum",
+                icon: "i iconfont icon-guanli",
                 title: "数据汇总",
                 name: "dataSum",
                 access: 0,
@@ -227,6 +265,7 @@ export const appRouter = [
             },
             {
                 path: "cashWithdrawal",
+                icon: "i iconfont icon-guanli",
                 title: "提现管理",
                 name: "cashWithdrawal",
                 access: 0,
@@ -236,6 +275,7 @@ export const appRouter = [
     },
     {
         path: "/operationManagement",
+        icon: "i iconfont icon-gerenhaoyunyinggongju",
         name: "operationManagement",
         access: 0,
         title: "运营管理",
@@ -243,6 +283,7 @@ export const appRouter = [
         children: [
             {
                 path: "videoManage",
+                icon: "i iconfont icon-guanli",
                 title: "视频管理",
                 name: "videoManage",
                 access: 0,
@@ -250,6 +291,7 @@ export const appRouter = [
             },
             {
                 path: "articleManage",
+                icon: "i iconfont icon-guanli",
                 title: "文章管理",
                 name: "articleManage",
                 access: 0,
@@ -257,6 +299,7 @@ export const appRouter = [
             },
             {
                 path: "extensionManage",
+                icon: "i iconfont icon-guanli",
                 title: "素材管理（推广）",
                 name: "extensionManage",
                 access: 0,
@@ -264,6 +307,30 @@ export const appRouter = [
             },
         ]
     },
+    // {
+    //     path: "/operationManagement",
+    //     icon: "i iconfont icon-wenjian",
+    //     name: "operationManagement",
+    //     access: 0,
+    //     title: "配置管理",
+    //     component: Main,
+    //     children: [
+    //         {
+    //             path: "videoManage",
+    //             title: "视频管理",
+    //             name: "videoManage",
+    //             access: 0,
+    //             component: () => import("@/views/operationManagement/index")
+    //         },
+    //         {
+    //             path: "articleManage",
+    //             title: "文章管理",
+    //             name: "articleManage",
+    //             access: 0,
+    //             component: () => import("@/views/operationManagement/articleManage")
+    //         },
+    //     ]
+    // },
 ];
 
 // 所有上面定义的路由都要写在下面的routers里

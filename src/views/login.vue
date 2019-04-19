@@ -2,64 +2,27 @@
     <div class="login" @keydown.enter="handleSubmit">
         <div class="login-con" v-show="formShow == 0">
             <Card :bordered="false">
-                <p slot="title">
-                    <Icon type="log-in"></Icon>
-                    欢迎登录
-                </p>
+                <div class="login-con-header" slot="title">
+                    <img src="../images/login_title.png" alt="">
+                </div>
                 <div class="form-con">
                     <Form ref="loginForm" :model="form" :rules="rules">
                         <FormItem prop="username">
-                            <Input v-model="form.username" placeholder="请输入用户名">
-                                <span slot="prepend">
-                                    <Icon :size="16" type="person"></Icon>
-                                </span>
+                            <Input v-model="form.username" placeholder="请输入百草膳餐饮管理系统登录账号">
+                                <span slot="prepend">登录账号</span>
                             </Input>
                         </FormItem>
                         <FormItem prop="password">
                             <Input type="password" v-model="form.password" placeholder="请输入密码">
-                                <span slot="prepend">
-                                    <Icon :size="14" type="locked"></Icon>
-                                </span>
+                                <span slot="prepend">登录密码</span>
                             </Input>
                         </FormItem>
                         <FormItem>
-                            <Button @click="handleSubmit" type="primary" long>登录</Button>
-                        </FormItem>
-                        <FormItem class="cc-text-center">
-                            <Button type="text" @click="formShow=1">第一次登陆，立即注册</Button>
+                            <Button @click="handleSubmit" style="margin-top: 15px" type="primary" long>登录</Button>
                         </FormItem>
                     </Form>
                 </div>
-            </Card>
-        </div>
-        <div class="login-con" v-show="formShow == 1">
-            <Card :bordered="false">
-                <p slot="title">
-                    <Icon type="log-in"></Icon>
-                    注册
-                </p>
-                <div class="form-con">
-                    <Form ref="registerForm" :model="registerForm" :rules="registerRules" :label-width="80">
-                        <FormItem label="手机号" prop="phone">
-                            <Input v-model="registerForm.phone" placeholder=""></Input>
-                        </FormItem>
-                        <FormItem label="邀请码" prop="inviteCode">
-                            <Input v-model="registerForm.inviteCode" placeholder=""></Input>
-                        </FormItem>
-                        <FormItem label="设置密码" prop="newPasswd">
-                            <Input type="password" v-model="registerForm.newPasswd" placeholder=""></Input>
-                        </FormItem>
-                        <FormItem label="确认密码" prop="passwdCheck">
-                            <Input type="password" v-model="registerForm.passwdCheck" placeholder=""></Input>
-                        </FormItem>
-                        <div class="cc-m-b-20">
-                            <Button type="primary" long @click="registerSubmit">注册</Button>
-                        </div>
-                        <div class="cc-text-center">
-                          <Button type="text" @click="formShow=0">登陆</Button>
-                        </div>
-                    </Form>
-                </div>
+                <p class="login-bottom">百草膳餐饮管理系统 V 1.0.0</p>
             </Card>
         </div>
     </div>
@@ -93,106 +56,44 @@ export default {
         return {
             formShow: 0,
             form: {
-                clientId: '',
+                username: '',
                 password: '',
-                username: ''
-            },
-            registerForm: {
-                phone: '',
-                inviteCode: '',
-                newPasswd: '',
-                passwdCheck: ''
             },
             rules: {
-                username: [
-                    { required: true, message: '账号不能为空', trigger: 'blur' }
-                ],
+                username: [{ required: true, message: '账号不能为空', trigger: 'blur' }],
                 password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
             },
-            registerRules: {
-                phone: [{ required: true, message: '手机号不能为空', trigger: 'blur' }],
-                inviteCode: [
-                    { required: true, message: '邀请码不能为空', trigger: 'blur' }
-                ],
-                newPasswd: [
-                    { required: true, validator: validatePass, trigger: 'blur' }
-                ],
-                passwdCheck: [
-                    { required: true, validator: validatePassCheck, trigger: 'blur' }
-                ]
-            }
         };
     },
     created () {
-        let url = config.loginUrl;
-        console.log(url);
-        const code = url
-            .split('?')[1]
-            .split('=')[1]
-            .split('#')[0];
-        this.getBaseInfo(code);
+
     },
     methods: {
-    // 获取团队后台应用基本信息
-        getBaseInfo (code) {
-            this.$http({
-                url: this.serviceurl + '/weteam-service/mgt/company/app/show',
-                method: 'get',
-                params: {
-                    code
-                }
-            })
-                .then(res => {
+        // 用户登入
+        login () {
+            let that = this;
+            let url = that.serviceurl + '/backstage/admin/login';
+            let data = that.form;
+            that
+                .$http(url, '', data, "post")
+                .then(res=> {
+                    console.log(res)
                     if (res.data.retCode === 0) {
-                        this.form.clientId = res.data.data.appKey;
-                        window.document.title = res.data.data.name;
-                        this.Cookies.set('name', res.data.data.name);
-                        if (!res.data.data.appKey) {
-                            this.$Message.warning('appKey不存在！');
-                        }
+                        that.Cookies.set('user', that.form.username);
+                        that.Cookies.set('token', res.data.data);
+                        let access = 0;
+                        that.Cookies.set('access', access);
+                        that.$axios.defaults.headers.common['Authorization'] = res.data.data;
+                        that.$router.push({
+                            name: 'home_index'
+                        });
                     } else {
-                        this.$Message.warning(res.data.retMsg || '获取团队信息失败！');
+                        that.$Message.warning(res.data.retMsg || '用户名或密码错误！');
                     }
                 })
                 .catch(e => {
-                    console.log(e);
-                });
-        },
-        // 融创平台用户登入
-        login () {
-            if (this.form.clientId) {
-                this.$http({
-                    url: this.serviceurl + '/weteam-service/mgt/login',
-                    method: 'post',
-                    data: this.form
+                    that.$Message.warning('用户名或密码错误！');
                 })
-                    .then(res => {
-                        if (res.data.retCode === 0) {
-                            console.log(res.data.data);
-                            this.Cookies.set('user', this.form.username);
-                            this.Cookies.set('token', res.data.data.authToken);
-                            let access = res.data.data.isAdmin ? 0 : '';
-                            this.Cookies.set('access', access);
-                            this.Cookies.set('clientId', this.form.clientId);
-                            this.$http.defaults.headers.common['Authorization'] =
-                res.data.data.authToken;
-                            this.$http.defaults.headers.common[
-                                'clientId'
-                            ] = this.form.clientId;
-                            this.$router.push({
-                                name: 'home_index'
-                            });
-                        } else {
-                            this.$Message.warning(res.data.retMsg || '用户名或密码错误！');
-                        }
-                    })
-                    .catch(e => {
-                        this.$Message.warning('用户名或密码错误！');
-                        console.log(e);
-                    });
-            } else {
-                this.$Message.warning('appKey无效！');
-            }
         },
         // 登录
         handleSubmit () {
@@ -202,40 +103,6 @@ export default {
                 }
             });
         },
-        // 用户注册
-        register () {
-            delete this.registerForm.passwdCheck;
-            this.$http({
-                url: this.serviceurl + '/weteam-service/mgt/user/regist',
-                headers: { clientId: this.form.clientId },
-                method: 'post',
-                data: this.registerForm
-            })
-                .then(res => {
-                    if (res.data.retCode === 0) {
-                        this.formShow = 0;
-                        this.$Message.success(res.data.retMsg || '注册成功！');
-                    } else {
-                        this.registerForm.passwdCheck = this.registerForm.newPasswd;
-                        this.$Message.warning(res.data.retMsg);
-                        if (res.data.retMsg == '请直接登录') {
-                            this.formShow = 0;
-                        }
-                    }
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        },
-        registerSubmit () {
-            this.$refs.registerForm.validate(valid => {
-                if (valid) {
-                    this.register();
-                } else {
-                    // this.$Message.error("Fail!");
-                }
-            });
-        }
     }
 };
 </script>

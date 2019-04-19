@@ -9,12 +9,14 @@ import util from './libs/util';
 import config from './utils/config';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { http } from './utils/HttpUtils';
 import { formatDate, timestamp } from './utils/date.js';
 import '@/styles/commoon.less';
 import '@/styles/btn.less';
 import { Store } from 'vuex';
 import 'promise-polyfill';
 import VueAMap from 'vue-amap';
+import './styles/icon/iconfont.css';
 Vue.use(iView);
 
 Vue.use(VueAMap);
@@ -25,12 +27,13 @@ VueAMap.initAMapApiLoader({
     v: '1.4.4'
 });
 
-if (Cookies.get('token') && Cookies.get('clientId')) {
+axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
+if (Cookies.get('token')) {
     axios.defaults.headers.common['Authorization'] = Cookies.get('token');
-    axios.defaults.headers.common['clientId'] = Cookies.get('clientId');
 }
 
-Vue.prototype.$http = axios;
+Vue.prototype.$axios = axios;
+Vue.prototype.$http = http;
 Vue.prototype.Cookies = Cookies;
 Vue.prototype.serviceurl = config.serviceurl;
 Vue.prototype.formatDate = formatDate;

@@ -89,22 +89,26 @@
                     {
                         title: '店铺ID',
                         align: 'center',
-                        key: ''
+                        key: 'customerId'
                     },
                     {
                         title: '会员名称',
                         align: 'center',
-                        key: ''
+                        key: 'name'
                     },
                     {
                         title: '手机号码',
                         align: 'center',
-                        key: ''
+                        key: 'mobile'
                     },
                     {
                         title: '性别',
                         align: 'center',
-                        key: ''
+                        key: 'sex',
+                        width: 80,
+                        render: (h,params) => {
+                            return h('p',params.row.sex === '0'? '未知':(params.row.sex === '1'? '男':'女'))
+                        }
                     },
                     {
                         title: '会员等级',
@@ -119,22 +123,24 @@
                     {
                         title: '会员卡ID',
                         align: 'center',
-                        key: ''
+                        key: 'cardId'
                     },
                     {
                         title: '余额',
                         align: 'center',
-                        key: ''
+                        key: 'balance',
+                        width: 70
                     },
                     {
                         title: '赠送金额',
                         align: 'center',
-                        key: ''
+                        key: 'giftBalance',
+                        width: 90
                     },
                     {
                         title: '实际充值金额',
                         align: 'center',
-                        key: ''
+                        key: 'realBalance',
                     },
                     {
                         title: '支付累计金额',
@@ -144,7 +150,7 @@
                     {
                         title: '消费累计金额',
                         align: 'center',
-                        key: ''
+                        key: 'payAmount',
                     },
                     {
                         title: '折扣累计金额',
@@ -161,11 +167,29 @@
         },
 
         created () {
-
+            this.getMenCard();
         },
 
         methods: {
-
+            getMenCard() {   //会员卡查询
+                let that = this;
+                let url = that.serviceurl + '/backstage/userMem/queryMemCard';
+                let data = null;
+                that
+                    .$http(url, '', data, 'get')
+                    .then(res=> {
+                        data = res.data;
+                        if(data.retCode === 0) {
+                            that.tableData = data.data.data;
+                            console.log(that.tableData);
+                        } else {
+                            that.$Message.warning(data.retMsg);
+                        }
+                    })
+                    .catch(e=> {
+                        that.$Message.error('请求错误!');
+                    })
+            },
         }
     };
 </script>

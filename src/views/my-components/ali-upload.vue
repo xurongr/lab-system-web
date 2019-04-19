@@ -40,7 +40,7 @@ export default {
         return {
             isRenew: false,
             region: 'oss-cn-shanghai',
-            folder: `teamAdmin${clientId}`,
+            folder: `herbsDood`,
             expiration: '',
             client: '',
             storeAs: '',
@@ -57,11 +57,11 @@ export default {
             //   this.$Message.warning(`最多只能上传${this.maxNum}个文件`);
             //   return false;
             // }
-            this.$http
+            this.$axios
                 .get(
                     `${
                         this.serviceurl
-                    }/weteam-service/oss/sts/policy/authorization/DUIKA_TEST_OSS?folder=${
+                    }/oss/sts/policy/authorization/DUIKA_TEST_OSS?folder=${
                         this.folder
                     }`
                 )
@@ -76,16 +76,15 @@ export default {
                             stsToken: res.data.data.SecurityToken,
                             bucket: res.data.data.bucketName
                         });
-                        console.log(client);
                         this.client = client;
                         const files = document.getElementById(this.id);
-                        if (
-                            this.isImg &&
-              !/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(files.files[0].name)
-                        ) {
-                            this.$Message.warning('请上传图片！');
-                            return false;
-                        }
+//                        if (
+//                            this.isImg &&
+//              !/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(files.files[0].name)
+//                        ) {
+//                            this.$Message.warning('请上传图片！');
+//                            return false;
+//                        }
                         if (files.files) {
                             const fileLen = document.getElementById(this.id).files;
                             // const resultUpload = [];
@@ -128,6 +127,7 @@ export default {
                                             )[0];
                                             if (i == fileLen.length - 1) {
                                                 this.$emit('url', this.resultUpload);
+                                                console.log('--url--', this.resultUpload);
                                             }
                                         }
                                     })
@@ -152,7 +152,7 @@ export default {
                     .get(
                         `${
                             this.serviceurl
-                        }/weteam-service/oss/sts/policy/authorization/DUIKA_TEST_OSS?folder=${
+                        }/oss/sts/policy/authorization/DUIKA_TEST_OSS?folder=${
                             this.folder
                         }`
                     )

@@ -18,14 +18,14 @@
                         <Button class="btn btn-blue">查询</Button>
                         <Button class="btn btn-blue" @click="isModal(1)">新增</Button>
                         <Button class="btn btn-blue" @click="isModal(2)">编辑</Button>
-                        <Button class="btn btn-blue" @click="start=!start" v-if="start">启用</Button>
-                        <Button class="btn btn-blue" @click="start=!start"  v-if="!start">禁用</Button>
-                        <Button class="btn btn-blue">删除</Button>
+                        <Button class="btn btn-blue" @click="editStatus(1)" v-if="levelManageDto.status === 2">启用</Button>
+                        <Button class="btn btn-blue" @click="editStatus(2)" v-if="levelManageDto.status === 1">禁用</Button>
+                        <Button class="btn btn-blue" @click="delLevel">删除</Button>
                     </div>
                 </div>
                 <div class="main-body">
-                    <Table class="cc-m-t-20" border :columns="table" :data="tableData"></Table>
-                    <div class="page"><Page class="cc-m-t-20" :total="total" :key="total"></Page></div>
+                    <Table class="cc-m-t-20" border :columns="table" :data="levelList" @on-row-click="choiceUser" :highlight-row="true"></Table>
+                    <div class="page"><Page class="cc-m-t-20" :total="total" :key="total" :current="current"  @on-change="changePage"></Page></div>
                 </div>
                 <Modal
                         v-model="modal"
@@ -34,12 +34,12 @@
                     <div class="add-member">
                         <p v-if="flag === 1">新增</p>
                         <p v-if="flag === 2">编辑</p>
-                        <p>等级名称&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入等级名称，如：普通会员" style="width: 75%" /></p>
-                        <p>直推奖励&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入奖励比例，如：8%" style="width: 75%" /></p>
-                        <p>间推奖励&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入奖励比例，如：8%" style="width: 75%" /></p>
-                        <p>市场补贴&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入奖励比例，如：8%" style="width: 75%" /></p>
-                        <p>公排奖励&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入奖励比例，如：8%" style="width: 75%" /></p>
-                        <div class="level-btn"><Button class="btn btn-blue">提交</Button></div>
+                        <p>等级名称&nbsp;&nbsp;<Input v-model="levelManageDto.levelName" placeholder="输入等级名称，如：普通会员" /></p>
+                        <p>直推奖励&nbsp;&nbsp;<Input v-model="levelManageDto.typeList[0].ratio" placeholder="输入奖励比例，如：8%输入8" /></p>
+                        <p>间推奖励&nbsp;&nbsp;<Input v-model="levelManageDto.typeList[1].ratio" placeholder="输入奖励比例，如：8%输入8" /></p>
+                        <p>市场补贴&nbsp;&nbsp;<Input v-model="levelManageDto.typeList[2].ratio" placeholder="输入奖励比例，如：8%输入8" /></p>
+                        <p>公排奖励&nbsp;&nbsp;<Input v-model="levelManageDto.typeList[3].ratio" placeholder="输入奖励比例，如：8%输入8" /></p>
+                        <div class="level-btn"><Button class="btn btn-blue" @click="addLevel">提交</Button></div>
                     </div>
                 </Modal>
             </TabPane>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="main-body">
-                    <Table class="cc-m-t-20" border :columns="ruleTable" :data="tableData"></Table>
+                    <Table class="cc-m-t-20" border :columns="ruleTable" :data="levelList"></Table>
                     <div class="page"><Page class="cc-m-t-20" :total="total" :key="total"></Page></div>
                 </div>
                 <Modal
@@ -74,25 +74,25 @@
                         <p v-if="flag === 1">新增</p>
                         <p v-if="flag === 2">编辑</p>
                         <p>升级前等级&nbsp;&nbsp;
-                            <Select v-model="level" style="width:70%">
-                                <Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
+                            <!--<Select v-model="level" style="width:70%">-->
+                                <!--<Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
+                            <!--</Select>-->
                         </p>
                         <p>升级后等级&nbsp;&nbsp;
-                            <Select v-model="level" style="width:70%">
-                                <Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
+                            <!--<Select v-model="level" style="width:70%">-->
+                                <!--<Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
+                            <!--</Select>-->
                         </p>
                         <p>充值金额&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入充值金额，如：1350" style="width: 70%" /></p>
                         <p>推广类型&nbsp;&nbsp;
-                            <Select v-model="level" style="width:70%">
-                                <Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
+                            <!--<Select v-model="level" style="width:70%">-->
+                                <!--<Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
+                            <!--</Select>-->
                         </p>
                         <p>推广会员等级&nbsp;&nbsp;
-                            <Select v-model="level" style="width:70%">
-                                <Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                            </Select>
+                            <!--<Select v-model="level" style="width:70%">-->
+                                <!--<Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
+                            <!--</Select>-->
                         </p>
                         <p>推广数量&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入数量，如：5" style="width: 70%" /></p>
                         <div class="level-btn"><Button class="btn btn-blue">提交</Button></div>
@@ -107,52 +107,43 @@
     export default {
         data () {
             return {
-                keyWord: '',
-                phone: null,
-                level: '全部',
-                levelList: [
-                    {
-                        value: '全部',
-                        label: '全部'
-                    },
-                    {
-                        value: '普通会员',
-                        label: '普通会员'
-                    },
-                    {
-                        value: '百草品客',
-                        label: '百草品客'
-                    },
-                    {
-                        value: '百草创客',
-                        label: '百草创客'
-                    },
-                    {
-                        value: '健康大使',
-                        label: '股东'
-                    }
-                ],
-                state: '全部',
+                current: 1,
+                pageNo: 0,
+                total: 0,
+                levelList: [],
+                state: 0,
                 stateList: [
                     {
-                        value: '全部',
+                        value: 0,
                         label: '全部'
                     },
                     {
-                        value: '启用',
+                        value: 1,
                         label: '启用'
                     },
                     {
-                        value: '禁用',
+                        value: 2,
                         label: '禁用'
-                    }
+                    },
                 ],
-                start: false,
-                tableData: [],
-                total: 0,
+                keyWord: '',
+                phone: null,
+                start: 1,
                 modal: false, // 弹框
+                levelManageDto: {
+                    id: null,
+                    levelName: '',
+                    status: 1,
+                    typeList: [
+                        {typeName: "直推奖励",typeCode: "DIRECT_PUSH",ratio: null},
+                        {typeName: "间推奖励",typeCode: "INDIRECT_PUSH",ratio: null},
+                        {typeName: "市场补贴",typeCode: "MARKET_SUBSIDY",ratio: null},
+                        {typeName: '公排奖励',typeCode: "PUBLIC_RANKING",ratio: null},
+                    ],
+                },
                 ruleModal: false,
-                flag: 1, // 1-新增  2-编辑
+                flag: 1,             // 1-新增  2-编辑  3-状态
+                levelId: null,      //等级Id
                 table: [
                     {
                         title: '序号',
@@ -163,37 +154,82 @@
                     {
                         title: '等级名称',
                         align: 'center',
-                        key: ''
+                        key: 'levelName'
                     },
                     {
                         title: '直推奖励',
                         align: 'center',
-                        key: ''
+                        key: 'typeName',
+                        render: (h,params) => {
+                            return h('p',
+                                params.row.typeList.map(item=>{
+                                    if(item.typeName === '直推奖励') {
+                                        return item.ratio === 0 ? '无' : (item.ratio === null ? '无' : item.ratio+'%')
+                                    }
+                                })
+                            )
+                        }
                     },
                     {
                         title: '间推奖励',
                         align: 'center',
-                        key: ''
+                        key: 'typeName',
+                        render: (h,params) => {
+                            return h('p',
+                                params.row.typeList.map(item=>{
+                                    if(item.typeName === '间推奖励') {
+                                        return item.ratio === 0 ? '无' : (item.ratio === null ? '无' : item.ratio+'%')
+                                    }
+                                })
+                            )
+                        }
                     },
                     {
                         title: '市场补贴',
                         align: 'center',
-                        key: ''
+                        key: 'typeName',
+                        render: (h,params) => {
+                            return h('p',
+                                params.row.typeList.map(item=>{
+                                    if(item.typeName === '市场补贴') {
+                                        return item.ratio === 0 ? '无' : (item.ratio === null ? '无' : item.ratio+'%')
+                                    }
+                                })
+                            )
+                        }
                     },
                     {
                         title: '公排奖励',
                         align: 'center',
-                        key: ''
+                        key: 'typeName',
+                        render: (h,params) => {
+                            return h('p',
+                                params.row.typeList.map(item=>{
+                                    if(item.typeName === '公排奖励') {
+                                        return item.ratio === 0 ? '无' : (item.ratio === null ? '无' : item.ratio+'%')
+                                    }
+                                })
+                            )
+                        }
                     },
                     {
                         title: '状态',
                         align: 'center',
-                        key: ''
+                        key: 'status',
+                        render: (h,params) => {
+                            return h('div', [
+                                h('span',{
+                                    style: {
+                                        color: params.row.status === 1 ? '#444':'red',
+                                    }
+                                },params.row.status === 1 ? '启用':'禁用')
+                            ])
+                        }
                     },
                     {
                         title: '创建时间',
                         align: 'center',
-                        key: ''
+                        key: 'createTime'
                     }
                 ],
                 ruleTable: [
@@ -248,20 +284,143 @@
         },
 
         created () {
-
+            this.getLevelList();
         },
 
         methods: {
-            // 会员等级弹框
-            isModal (num) {
-                this.modal = true;
+            isModal (num) {    // 会员等级弹框
                 this.flag = num;
+                if (num=== 1 || (num === 2 && this.levelId !==null)) {
+                    this.modal = true;
+                } else {
+                    this.$Message.warning('请先选择操作对象！');
+                }
             },
-            // 升级规则弹框
-            isRuleModal (num) {
+
+            isRuleModal (num) {  // 升级规则弹框
                 this.ruleModal = true;
                 this.flag = num;
-            }
+            },
+
+            changePage(val) {      //改变页码
+                this.pageNo = val - 1;
+                this.getLevelList();
+            },
+
+            choiceUser(row,index) {   //选择表格某一行
+                this.levelId = row.id;
+                this.levelManageDto.id = row.id;
+                this.levelManageDto.levelName = row.levelName;
+                this.levelManageDto.status = row.status;
+                row.typeList.map(item => {
+                    if(item.typeName === '直推奖励') {
+                        this.levelManageDto.typeList[0] = item;
+                    } else if(item.typeName === '间推奖励') {
+                        this.levelManageDto.typeList[1] = item;
+                    } else if(item.typeName === '市场补贴') {
+                        this.levelManageDto.typeList[2] = item;
+                    } else if(item.typeName === '公排奖励') {
+                        this.levelManageDto.typeList[3] = item;
+                    }
+                });
+            },
+
+            getLevelList() {     //分页获取等级列表
+                let that = this;
+                let url = this.serviceurl + '/backstage/user/pageLevelManage';
+                let params = {
+                    pageNo: that.pageNo,
+                    pageSize: 10,
+                }
+                let data = null;
+                that
+                    .$http(url, params, data, "get")
+                    .then(res=> {
+                        data = res.data;
+                        if(data.retCode === 0) {
+                            that.levelList = data.data.data;
+                            console.log(that.levelList);
+                            that.total = parseInt(data.data.total);
+                            console.log(that.levelId);
+                            that.levelId = null;    //初始化
+                            that.levelManageDto = {
+                                levelName: '',
+                                status: 1,
+                                typeList: [
+                                    {typeName: "直推奖励",typeCode: "DIRECT_PUSH",ratio: null},
+                                    {typeName: "间推奖励",typeCode: "INDIRECT_PUSH",ratio: null},
+                                    {typeName: "市场补贴",typeCode: "MARKET_SUBSIDY",ratio: null},
+                                    {typeName: '公排奖励',typeCode: "PUBLIC_RANKING",ratio: null},
+                                ],
+                            };
+                        } else {
+                            that.$Message.warning(data.retMsg)
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误')
+                    })
+            },
+
+            addLevel() {    //新增等级、修改等级信息、禁用、启用
+                let that = this;
+                let url = this.serviceurl + '/backstage/user/addOrModifyLevel';
+                let data = that.levelManageDto;
+                that
+                    .$http(url, '', data, "post")
+                    .then(res=> {
+                        console.log(res)
+                        if(res.data.retCode === 0) {
+                            if(that.flag === 1) {
+                                that.$Message.success('等级新增成功！');
+                            } else if(that.flag === 2) {
+                                that.$Message.success('等级修改成功！');
+                            } else if(that.flag === 3) {
+                                that.$Message.success('状态修改成功！');
+                            }
+                            that.modal = false;
+                            that.getLevelList();
+                        } else {
+                            that.$Message.warning(res.data.retMsg)
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误')
+                    })
+            },
+
+            editStatus(status) {    //禁用、启用
+                if(this.levelId === null) {
+                    this.$Message.warning('请先选择操作对象！');
+                } else {
+                    this.flag = 3;
+                    this.levelManageDto.status = status;
+                    this.addLevel();
+                }
+            },
+
+            delLevel() {   //删除等级
+                let that = this;
+                if(that.levelId === null) {
+                    that.$Message.warning('请先选择等级!');
+                } else {
+                    let url = this.serviceurl + '/backstage/user/delLevel';
+                    let params = {levelId: that.levelId};
+                    that
+                        .$http(url, params, '', "get")
+                        .then(res=> {
+                            if(res.data.retCode === 0) {
+                                that.$Message.success('删除等级成功！');
+                                that.getLevelList();
+                            } else {
+                                that.$Message.warning(res.data.retMsg)
+                            }
+                        })
+                        .catch(e => {
+                            that.$Message.error('请求错误')
+                        })
+                }
+            },
         }
     };
 </script>
@@ -281,6 +440,9 @@
                 padding-top: 0;
                 font-weight: 600;
                 letter-spacing: 1px;
+            }
+            /deep/.ivu-input-wrapper{
+                width: 75%;
             }
         }
         .level-btn {
