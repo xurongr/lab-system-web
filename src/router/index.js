@@ -61,7 +61,6 @@ router.beforeEach((to, from, next) => {
                 }
             } else {
                 // 没有配置权限的路由, 直接通过
-                console.log(1,[...routers])
                 Util.toDefaultPage([...routers], to.name, router, next);
             }
         }

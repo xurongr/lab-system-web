@@ -167,7 +167,7 @@
         },
 
         created () {
-            this.getMenCard();
+//            this.getMenCard();
         },
 
         methods: {

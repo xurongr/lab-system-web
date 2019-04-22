@@ -2,16 +2,16 @@
     <div class="main-body store-data">
         <div class="store-data-top">
             <p>门店选择 &nbsp;&nbsp;
-                <Select v-model="level" style="width:130px">
-                    <Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                <Select v-model="shopId" style="width:130px">
+                    <Option v-for="item in shopSeclect" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
             </p>
-            <p>时间 &nbsp;&nbsp;<DatePicker type="date" placeholder="选择时间" v-model="date"></DatePicker></p>
-            <Button class="btn btn-b-hover">查询</Button>
+            <p>时间 &nbsp;&nbsp;<DatePicker type="datetimerange" placeholder="选择时间段" @on-change="changeTime" style="width: 150px;color: #444"></DatePicker></p>
+            <Button class="btn btn-blue" @click="getShopData">查询</Button>
         </div>
         <div class="store-data-income">
             <Card>
-                <p slot="title" class="income-title">收益总数 <span>555，555</span></p>
+                <p slot="title" class="income-title">收益总数 <span>{{incomeTotal}}</span></p>
                 <Row>
                     <Col span="4">
                         <div class="income-data">
@@ -55,30 +55,17 @@
     export default {
         data () {
             return {
-                level: '全部',
-                levelList: [
-                    {
-                        value: '全部',
-                        label: '全部'
-                    },
-                    {
-                        value: '普通会员',
-                        label: '普通会员'
-                    },
-                    {
-                        value: '百草品客',
-                        label: '百草品客'
-                    },
-                    {
-                        value: '百草创客',
-                        label: '百草创客'
-                    },
-                    {
-                        value: '健康大使',
-                        label: '股东'
-                    }
-                ],
+                pageNo1: 0,
+                pageNo: 0,
+                shopId: null,     //门店ID
+                startTime: '',
+                endTime: '',
+                shopList: [],     //店铺列表
+                shopSeclect: [],
                 date: '',
+                incomeTotal: 0,         //收益总数
+                shopIncomeDetail: [],   //数据详情
+                incomeGroups: [],       //数据明细
                 tableData: [],
                 total: 0,
                 table: [
@@ -123,10 +110,83 @@
         },
 
         created () {
-
+            this.getShopList();
         },
 
-        methods: {}
+        methods: {
+            getShopList() {   //获取门店信息
+                let that = this;
+                let url = that.serviceurl + '/backstage/shop/pageShop';
+                let params = {
+                    pageNo: that.pageNo1,
+                    pageSize: 10
+                }
+                that
+                    .$http(url, params, '', 'get')
+                    .then(res => {
+                        if(res.data.retCode === 0) {
+                            that.shopList = that.shopList.concat(res.data.data.data);
+                            let total = parseInt(res.data.data.total);
+                            if(that.shopList.length < total) {
+                                that.pageNo1++;
+                                that.getShopList();
+                            }
+                            that.shopList.map(item => {
+                                that.shopSeclect.push({
+                                    value: item.id,
+                                    label: item.shopName
+                                })
+                            })
+                        } else {
+                            that.$Message.warning(res.data.retMsg);
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误');
+                    })
+            },
+
+            changeTime(time) {   //选择时间段
+                this.startTime = new Date(time[0]).getTime();
+                this.endTime = new Date(time[1]).getTime();
+                if(time[0] === '') {
+                    this.startTime = '';
+                }
+                if(time[1] === '') {
+                    this.endTime = '';
+                }
+            },
+
+            getShopData() {   //获取门店收益数据
+                let that = this;
+                let url = that.serviceurl + '/backstage/shop/getShopData';
+                let params = {
+                    shopId: that.shopId,
+                    startTime: that.startTime,
+                    endTime: that.endTime,
+                };
+                console.log(params)
+                let data = null;
+                that
+                    .$http(url, params, data, 'get')
+                    .then(res => {
+                        data = res.data;
+                        if(data.retCode === 0) {
+                            that.shopIncomeDetail = data.data.shopIncomeDetailsDtos;
+                            that.incomeGroups = data.data.shopIncomeDto.incomeGroups;
+                            that.incomeTotal = data.data.shopIncomeDto.total;
+                            console.log('--that.shopIncomeDetail--',that.shopIncomeDetail)
+                            console.log('--that.incomeGroups--',that.incomeGroups)
+                            console.log('--that.incomeTotal--',that.incomeTotal)
+                        } else {
+                            that.$Message.warning(data.retMsg);
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误');
+                    })
+            },
+        }
     };
 </script>
 
@@ -185,4 +245,7 @@
         }
     }
 }
+    /deep/ .ivu-select-dropdown {
+        top:53px !important;
+    }
 </style>

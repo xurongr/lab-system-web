@@ -5,17 +5,17 @@
                 <div class="cc-m-b-10 member-list-search">
                     <div class="m-search-top">
                         <div class="m-search-top-left">
-                            <p>等级名称 &nbsp;&nbsp;<Input v-model="keyWord" placeholder="关键字模糊搜索" style="width: 110px" /></p>
+                            <p>等级名称 &nbsp;&nbsp;<Input v-model="keyword" placeholder="关键字模糊搜索" style="width: 110px" /></p>
                             <p>
                                 状态 &nbsp;&nbsp;
-                                <Select v-model="state" style="width:130px">
+                                <Select v-model="status" style="width:130px">
                                     <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                                 </Select>
                             </p>
                         </div>
                     </div>
                     <div class="m-search-btn">
-                        <Button class="btn btn-blue">查询</Button>
+                        <Button class="btn btn-blue" @click="searchLevel">查询</Button>
                         <Button class="btn btn-blue" @click="isModal(1)">新增</Button>
                         <Button class="btn btn-blue" @click="isModal(2)">编辑</Button>
                         <Button class="btn btn-blue" @click="editStatus(1)" v-if="levelManageDto.status === 2">启用</Button>
@@ -48,13 +48,13 @@
                 <div class="cc-m-b-10 member-list-search">
                     <div class="m-search-top">
                         <p>状态 &nbsp;&nbsp;
-                            <Select v-model="state" style="width:130px">
+                            <Select v-model="status" style="width:130px">
                                 <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                             </Select>
                         </p>
                     </div>
                     <div class="m-search-btn">
-                        <Button class="btn btn-blue">查询</Button>
+                        <Button class="btn btn-blue" @click="searchLevel">查询</Button>
                         <Button class="btn btn-blue" @click="isRuleModal(1)">新增</Button>
                         <Button class="btn btn-blue" @click="isRuleModal(2)">编辑</Button>
                         <Button class="btn btn-blue" @click="start=!start" v-if="start">启用</Button>
@@ -83,7 +83,7 @@
                                 <!--<Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
                             <!--</Select>-->
                         </p>
-                        <p>充值金额&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入充值金额，如：1350" style="width: 70%" /></p>
+                        <p>充值金额&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入充值金额，如：1350" style="width: 70%" /></p>
                         <p>推广类型&nbsp;&nbsp;
                             <!--<Select v-model="level" style="width:70%">-->
                                 <!--<Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
@@ -94,7 +94,7 @@
                                 <!--<Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
                             <!--</Select>-->
                         </p>
-                        <p>推广数量&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入数量，如：5" style="width: 70%" /></p>
+                        <p>推广数量&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入数量，如：5" style="width: 70%" /></p>
                         <div class="level-btn"><Button class="btn btn-blue">提交</Button></div>
                     </div>
                 </Modal>
@@ -111,7 +111,7 @@
                 pageNo: 0,
                 total: 0,
                 levelList: [],
-                state: 0,
+                status: 0,
                 stateList: [
                     {
                         value: 0,
@@ -126,7 +126,7 @@
                         label: '禁用'
                     },
                 ],
-                keyWord: '',
+                keyword: '',
                 phone: null,
                 start: 1,
                 modal: false, // 弹框
@@ -325,10 +325,19 @@
                 });
             },
 
+            searchLevel() {  //搜索
+                this.pageNo = 0;
+                this.getLevelList();
+            },
+
             getLevelList() {     //分页获取等级列表
                 let that = this;
                 let url = this.serviceurl + '/backstage/user/pageLevelManage';
+                let status;
+                if(that.status === 0) { status = ''} else { status = that.status}
                 let params = {
+                    keyword: that.keyword,
+                    status: status,
                     pageNo: that.pageNo,
                     pageSize: 10,
                 }
@@ -341,7 +350,6 @@
                             that.levelList = data.data.data;
                             console.log(that.levelList);
                             that.total = parseInt(data.data.total);
-                            console.log(that.levelId);
                             that.levelId = null;    //初始化
                             that.levelManageDto = {
                                 levelName: '',

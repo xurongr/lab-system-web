@@ -3,9 +3,9 @@
         <div class="cc-m-b-10 member-list-search">
             <div class="m-search-top">
                 <div class="m-search-top-left">
-                    <p>会员名称 &nbsp;&nbsp;<Input v-model="keyWord" placeholder="关键字模糊搜索" style="width: 110px" /></p>
+                    <p>会员名称 &nbsp;&nbsp;<Input v-model="keyword" placeholder="关键字模糊搜索" style="width: 110px" /></p>
                     <p>手机号码 &nbsp;&nbsp;<Input v-model="phone" style="width: 110px" /></p>
-                    <p>店铺名称 &nbsp;&nbsp;<Input v-model="phone" style="width: 110px" /></p>
+                    <p>店铺名称 &nbsp;&nbsp;<Input v-model="shopName" style="width: 110px" /></p>
                     <p>
                         等级 &nbsp;&nbsp;
                         <Select v-model="level" style="width:130px" >
@@ -22,7 +22,7 @@
                 <p style="font-size: 18px; font-weight: 600; line-height: 32px;">会员总数：{{total}}</p>
             </div>
             <div class="m-search-btn">
-                <Button class="btn btn-blue">查询</Button>
+                <Button class="btn btn-blue" @click="searchMem">查询</Button>
                 <Button class="btn btn-blue" @click="isLevelSet">等级设置</Button>
                 <Button class="btn btn-blue" @click="statusChange(1)" v-if="start ===4">启用</Button>
                 <Button class="btn btn-blue" @click="statusChange(4)" v-if="start === 1">禁用</Button>
@@ -65,8 +65,9 @@
                 total: 0,
                 userList: [],
                 pageNo1: 0,
-                keyWord: '',
-                phone: null,
+                keyword: '',
+                phone: '',
+                shopName: '',
                 level: -1,
                 levelList: [
                     {
@@ -104,7 +105,7 @@
                     {
                         title: '会员名称',
                         align: 'center',
-                        key: 'name'
+                        key: 'nickName'
                     },
                     {
                         title: '手机号码',
@@ -194,10 +195,24 @@
                 this.getUserList();
             },
 
+            searchMem() {   //查询
+                this.pageNo = 0;
+                this.getUserList();
+            },
+
             getUserList() {      //获取会员列表
                 let that = this;
                 let url = this.serviceurl + '/backstage/level/pageUser';
+                let levelId;
+                let status;
+                if(that.level === -1) {levelId = ''} else {levelId = that.level}
+                if(that.state === -1) {status = ''} else {status = that.state}
                 let params = {
+                    keyword: that.keyword,
+                    phone: that.phone,
+                    shopName: that.shopName,
+                    levelId: levelId,
+                    status: status,
                     pageNo: that.pageNo,
                     pageSize: 10,
                 }

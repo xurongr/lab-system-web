@@ -3,23 +3,23 @@
         <div class="cc-m-b-10 member-list-search">
             <div class="m-search-top">
                 <div class="m-search-top-left">
-                    <p>店铺名称 &nbsp;&nbsp;<Input v-model="keyWord" placeholder="关键字模糊搜索" style="width: 110px" /></p>
+                    <p>店铺名称 &nbsp;&nbsp;<Input v-model="keyword" placeholder="关键字模糊搜索" style="width: 110px" /></p>
                 </div>
             </div>
             <div class="m-search-btn">
-                <Button class="btn btn-b-hover">查询</Button>
-                <Button class="btn btn-b-hover" @click="goInfoStore(1)">新增</Button>
-                <Button class="btn btn-b-hover" @click="goInfoStore(2)">编辑</Button>
-                <Button class="btn btn-b-hover" @click="start=!start" v-if="start">启用</Button>
-                <Button class="btn btn-b-hover" @click="start=!start"  v-if="!start">禁用</Button>
-                <Button class="btn btn-b-hover" @click="goStaffManage">员工管理</Button>
-                <Button class="btn btn-b-hover" @click="modalSet(1)">收益设置</Button>
-                <Button class="btn btn-r-hover" @click="modalSet(2)">参数设置</Button>
+                <Button class="btn btn-blue" @click="searchStore">查询</Button>
+                <Button class="btn btn-blue" @click="goInfoStore(1)">新增</Button>
+                <Button class="btn btn-blue" @click="goInfoStore(2)">编辑</Button>
+                <Button class="btn btn-blue" @click="statusChange(1)" v-if="shopInfo.status !== 1">营业</Button>
+                <Button class="btn btn-blue" @click="statusChange(2)"  v-if="shopInfo.status === 1">停业</Button>
+                <Button class="btn btn-blue" @click="goStaffManage">员工管理</Button>
+                <Button class="btn btn-blue" @click="incomeModal = true">收益设置</Button>
+                <Button class="btn btn-blue" @click="paramsModal = true">参数设置</Button>
             </div>
         </div>
         <div class="main-body">
-            <Table class="cc-m-t-20" border :columns="table" :data="tableData"></Table>
-            <div class="page"><Page class="cc-m-t-20" :total="total" :key="total"></Page></div>
+            <Table class="cc-m-t-20" border :columns="table" :data="tableData" @on-row-click="choiceUser" :highlight-row="true"></Table>
+            <div class="page"><Page class="cc-m-t-20" :total="total" :key="total" :current="current" @on-change="changePage"></Page></div>
         </div>
         <!--收益设置模态框-->
         <Modal
@@ -28,10 +28,10 @@
                 :styles="{top: '30%'}">
             <div class="income-setting">
                 <p>收益设置</p>
-                <p>充值收益补贴&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入：如15%" style="width: 70%" /></p>
-                <p>消费收益补贴&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入：如15%" style="width: 70%" /></p>
-                <p>定制收益补贴&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入：如15%" style="width: 70%" /></p>
-                <p>商城收益补贴&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入：如15%" style="width: 70%" /></p>
+                <p>充值收益补贴&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入：如15%" style="width: 70%" /></p>
+                <p>消费收益补贴&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入：如15%" style="width: 70%" /></p>
+                <p>定制收益补贴&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入：如15%" style="width: 70%" /></p>
+                <p>商城收益补贴&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入：如15%" style="width: 70%" /></p>
                 <div class="level-btn"><Button class="btn btn-blue">保存</Button></div>
             </div>
         </Modal>
@@ -42,12 +42,12 @@
                 :styles="{top: '30%'}">
             <div class="income-setting">
                 <p>参数设置</p>
-                <p>应用ID&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入二维火应用ID" style="width: 75%" /></p>
-                <p>appKey&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入二维火appKey" style="width: 75%" /></p>
-                <p>appSecret&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入二维火appSecret" style="width: 75%" /></p>
-                <p>点餐URL&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入二维火点餐URL" style="width: 75%" /></p>
-                <p>外卖URL&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入二维火外卖URL" style="width: 75%" /></p>
-                <p>充值URL&nbsp;&nbsp;<Input v-model="keyWord" placeholder="输入二维火充值URL" style="width: 75%" /></p>
+                <p>应用ID&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入二维火应用ID" style="width: 75%" /></p>
+                <p>appKey&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入二维火appKey" style="width: 75%" /></p>
+                <p>appSecret&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入二维火appSecret" style="width: 75%" /></p>
+                <p>点餐URL&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入二维火点餐URL" style="width: 75%" /></p>
+                <p>外卖URL&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入二维火外卖URL" style="width: 75%" /></p>
+                <p>充值URL&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入二维火充值URL" style="width: 75%" /></p>
                 <div class="level-btn"><Button class="btn btn-blue">保存</Button></div>
             </div>
         </Modal>
@@ -58,49 +58,14 @@
     export default {
         data () {
             return {
-                keyWord: '',
-                phone: null,
-                level: '全部',
-                levelList: [
-                    {
-                        value: '全部',
-                        label: '全部'
-                    },
-                    {
-                        value: '普通会员',
-                        label: '普通会员'
-                    },
-                    {
-                        value: '百草品客',
-                        label: '百草品客'
-                    },
-                    {
-                        value: '百草创客',
-                        label: '百草创客'
-                    },
-                    {
-                        value: '健康大使',
-                        label: '股东'
-                    }
-                ],
-                state: '全部',
-                stateList: [
-                    {
-                        value: '全部',
-                        label: '全部'
-                    },
-                    {
-                        value: '启用',
-                        label: '启用'
-                    },
-                    {
-                        value: '禁用',
-                        label: '禁用'
-                    }
-                ],
-                start: false,
-                tableData: [],
+                pageNo: 0,
                 total: 0,
+                current: 1,
+                tableData: [],
+                keyword: '',
+                shopId: null,
+                shopInfo: [],
+                start: false,
                 incomeModal: false,
                 paramsModal: false,
                 table: [
@@ -113,54 +78,66 @@
                     {
                         title: '店铺ID',
                         align: 'center',
-                        key: ''
+                        key: 'entityId'   //entityId二维火id
                     },
                     {
                         title: '店铺名称',
                         align: 'center',
-                        key: ''
+                        key: 'shopName'
                     },
                     {
                         title: '描述',
                         align: 'center',
-                        key: ''
+                        key: 'shopDescribe'
                     },
                     {
                         title: '地址',
                         align: 'center',
-                        key: ''
+                        key: 'addr'
+                    },
+                    {
+                        title: '状态',
+                        align: 'center',
+                        key: 'status',
+                        render: (h, params) => {
+                            return h('div',[
+                                h('p',{
+                                    style: {
+                                        color: params.row.status === 1 ? '444' : 'red'
+                                    }
+                                },params.row.status === 1 ? '营业' : '停业')
+                            ])
+                        }
                     },
                     {
                         title: '负责人',
                         align: 'center',
-                        key: ''
+                        key: 'shopowner'
                     },
                     {
                         title: '创建时间',
                         align: 'center',
-                        key: ''
+                        key: 'createTime'
                     },
                     {
                         title: '更新时间',
                         align: 'center',
-                        key: ''
+                        key: 'updateTime'
                     }
                 ]
             };
         },
 
         created () {
-
+            this.getShopList();
         },
 
         methods: {
-            modalSet (num) {
-                if (num === 1) {
-                    this.incomeModal = true;
-                } else if (num === 2) {
-                    this.paramsModal = true;
-                }
+            choiceUser(row,index) {   //选择表格某一行
+                this.shopId = row.id;
+                this.shopInfo = row;
             },
+
             goInfoStore (num) {
                 if (num === 1) {
                     this.$router.push({
@@ -170,19 +147,92 @@
                         }
                     });
                 } else if (num === 2) {
+                    if(this.shopId === null) {
+                        this.$Message.warning('请先选择操作对象！');
+                    } else {
+                        this.$router.push({
+                            path: '/editStore',
+                            query: {
+                                flag: num,
+                                shopInfo: this.shopInfo,
+                            }
+                        });
+                    }
+                }
+            },
+
+            changePage(val) {  //改变页码
+                this.pageNo = val - 1;
+                this.getShopList();
+            },
+
+            searchStore() {   //搜索
+                this.pageNo = 0;
+                this.getShopList();
+            },
+
+            getShopList() {   //获取门店信息
+                let that = this;
+                let url = that.serviceurl + '/backstage/shop/pageShop';
+                let params = {
+                    keyword: that.keyword,
+                    pageNo: that.pageNo,
+                    pageSize: 10
+                }
+                that
+                    .$http(url, params, '', 'get')
+                    .then(res => {
+                        if(res.data.retCode === 0) {
+                            that.tableData = res.data.data.data;
+                            that.total = parseInt(res.data.data.total);
+                            console.log('-- 门店信息 --',that.tableData)
+                        } else {
+                            that.$Message.warning(res.data.retMsg);
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误');
+                    })
+            },
+
+            goStaffManage () {
+                if(this.shopId === null) {
+                    this.$Message.warning('请先选择店铺！');
+                } else {
                     this.$router.push({
-                        path: '/editStore',
+                        path: '/staffManagement',
                         query: {
-                            flag: num
+                            shopId: this.shopId,
                         }
                     });
                 }
             },
-            goStaffManage () {
-                this.$router.push({
-                    path: '/staffManagement'
-                });
-            }
+
+            statusChange(status) {
+                if(this.shopId === null) {
+                    this.$Message.warning('请先选择店铺！');
+                } else {
+                    let that = this;
+                    let url = that.serviceurl + '/backstage/shop/addOrModifyShop';
+                    that.shopInfo.status = status;
+                    console.log(status)
+                    let data = that.shopInfo;
+                    that
+                        .$http(url, '', data, 'post')
+                        .then(res=> {
+                            if(res.data.retCode === 0) {
+                                that.$Message.success('店铺状态修改成功！');
+                                that.shopId = null;
+                                that.getShopList();
+                            } else {
+                                that.$Message.warning(res.data.retMsg || '店铺状态修改失败！');
+                            }
+                        })
+                        .catch(e=> {
+                            that.$Message.error('请求错误')
+                        })
+                }
+            },
         }
     };
 </script>
