@@ -2,30 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5ce0834-cd88-4437-84fd-313f27aadebd" name="默认的" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/0.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/1.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/10.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/11.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/12.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/13.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/14.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/15.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/16.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/17.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/18.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/19.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/2.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/20.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/21.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/22.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/23.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/3.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/4.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/5.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/6.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/7.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/8.3e29771eba74025af2d6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/9.3e29771eba74025af2d6.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/0.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/1.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/10.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/11.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/12.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/13.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/14.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/15.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/16.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/17.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/18.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/19.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/2.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/20.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/21.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/22.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/23.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/3.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/4.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/5.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/6.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/7.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/8.826427219fe75ff77926.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/9.826427219fe75ff77926.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/fonts/ionicons.eot" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/fonts/ionicons.svg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/fonts/ionicons.ttf" afterPath="" />
@@ -33,8 +33,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/g.css" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/langs/en_GB.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/langs/zh_CN.GB2312.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/main.3e29771eba74025af2d6.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/main.3e29771eba74025af2d6.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/main.826427219fe75ff77926.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/main.826427219fe75ff77926.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/advlist/index.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/advlist/plugin.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/advlist/plugin.min.js" afterPath="" />
@@ -209,9 +209,10 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/modern/index.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/modern/theme.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/modern/theme.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/vender-base.3e29771eba74025af2d6.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/vender-exten.3e29771eba74025af2d6.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/vender-base.826427219fe75ff77926.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/vender-exten.826427219fe75ff77926.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/y.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/config.js" afterPath="$PROJECT_DIR$/src/utils/config.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -247,7 +248,7 @@
         <entry file="file://$PROJECT_DIR$/src/utils/config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="26" column="81" lean-forward="false" selection-start-line="26" selection-start-column="81" selection-end-line="26" selection-end-column="81" />
+              <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -463,7 +464,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/xrr/hc-shequ/ejavashop/ejavashop-qiehuoh5" />
+    <property name="last_opened_file_path" value="D:/xrr/hc-shequ/merchantAdmin" />
     <property name="nodejs_interpreter_path" value="D:/Program Files/nodejs/node" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -556,12 +557,12 @@
       <workItem from="1555551032297" duration="32599000" />
       <workItem from="1555637989616" duration="23318000" />
       <workItem from="1555898299322" duration="35147000" />
-      <workItem from="1555982860961" duration="468000" />
+      <workItem from="1555982860961" duration="949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229520000" />
+    <option name="totallyTimeSpent" value="230001000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -992,7 +993,7 @@
     <entry file="file://$PROJECT_DIR$/src/utils/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="26" column="81" lean-forward="false" selection-start-line="26" selection-start-column="81" selection-end-line="26" selection-end-column="81" />
+          <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
           <folding />
         </state>
       </provider>
