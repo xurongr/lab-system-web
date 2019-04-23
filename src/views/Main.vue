@@ -14,7 +14,7 @@
                     <div slot="top" class="logo-con">
                         <!--<img src="../images/nav_title.png">-->
                         <svg width="150px"
-                             height="50px"
+                             height="45px"
                              viewBox="0 0 179 63"
                              version="1.1"
                              xmlns="http://www.w3.org/2000/svg"

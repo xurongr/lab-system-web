@@ -271,7 +271,6 @@
             },
 
             changeMemStatus(num) {   //修改员工在店状态
-                console.log(num)
                 let that = this;
                 if(that.staffId === null) {
                     that.$Message.warning('请先选择员工！');
@@ -279,6 +278,7 @@
                     let url = that.serviceurl + '/backstage/shop/addOrModyfyShopMem';
                     that.shopStaffDto.updateTime = new Date().getTime();
                     that.shopStaffDto.shopStatus = num;
+                    that.shopStaffDto.shopId = that.staffId;
                     let data = that.shopStaffDto;
                     that
                         .$http(url, '', data, 'post')

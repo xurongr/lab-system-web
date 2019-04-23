@@ -10,10 +10,10 @@
                 <Button class="btn btn-blue" @click="searchStore">查询</Button>
                 <Button class="btn btn-blue" @click="goInfoStore(1)">新增</Button>
                 <Button class="btn btn-blue" @click="goInfoStore(2)">编辑</Button>
-                <Button class="btn btn-blue" @click="statusChange(1)" v-if="shopInfo.status !== 1">营业</Button>
-                <Button class="btn btn-blue" @click="statusChange(2)"  v-if="shopInfo.status === 1">停业</Button>
+                <Button class="btn btn-blue" @click="statusChange(1)" v-if="shopInfo.status !== 1">启用</Button>
+                <Button class="btn btn-blue" @click="statusChange(2)"  v-if="shopInfo.status === 1">禁用</Button>
                 <Button class="btn btn-blue" @click="goStaffManage">员工管理</Button>
-                <Button class="btn btn-blue" @click="incomeModal = true">收益设置</Button>
+                <Button class="btn btn-blue" @click="incomeSet">收益设置</Button>
                 <Button class="btn btn-blue" @click="paramsModal = true">参数设置</Button>
             </div>
         </div>
@@ -28,11 +28,10 @@
                 :styles="{top: '30%'}">
             <div class="income-setting">
                 <p>收益设置</p>
-                <p>充值收益补贴&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入：如15%" style="width: 70%" /></p>
-                <p>消费收益补贴&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入：如15%" style="width: 70%" /></p>
-                <p>定制收益补贴&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入：如15%" style="width: 70%" /></p>
-                <p>商城收益补贴&nbsp;&nbsp;<Input v-model="keyword" placeholder="输入：如15%" style="width: 70%" /></p>
-                <div class="level-btn"><Button class="btn btn-blue">保存</Button></div>
+                <p v-for="(item, index) in setIncomeData" :key="index">
+                    {{item.name}}&nbsp;&nbsp;<Input v-model="item.ratio" placeholder="输入：如15%" style="width: 70%" />
+                </p>
+                <div class="level-btn"><Button class="btn btn-blue" @click="setIncomeSubsidy">保存</Button></div>
             </div>
         </Modal>
         <!--参数设置模态框-->
@@ -65,6 +64,9 @@
                 keyword: '',
                 shopId: null,
                 shopInfo: [],
+                incomeType: [],    //店铺补贴类型
+                incomeData: [],    //店铺补贴
+                setIncomeData: [],
                 start: false,
                 incomeModal: false,
                 paramsModal: false,
@@ -78,7 +80,7 @@
                     {
                         title: '店铺ID',
                         align: 'center',
-                        key: 'entityId'   //entityId二维火id
+                        key: 'id'
                     },
                     {
                         title: '店铺名称',
@@ -130,6 +132,7 @@
 
         created () {
             this.getShopList();
+            this.getShopIncomeType();
         },
 
         methods: {
@@ -208,7 +211,7 @@
                 }
             },
 
-            statusChange(status) {
+            statusChange(status) {    //修改店铺状态
                 if(this.shopId === null) {
                     this.$Message.warning('请先选择店铺！');
                 } else {
@@ -232,6 +235,100 @@
                             that.$Message.error('请求错误')
                         })
                 }
+            },
+
+            getShopIncomeType() {   //获取收益补贴类型
+                let that = this;
+                let url = that.serviceurl + '/backstage/shop/getShopSubsidyIncomeType';
+                that
+                    .$http(url, '', '', 'get')
+                    .then(res => {
+                        console.log(res)
+                        if(res.data.retCode === 0) {
+                            that.incomeType = res.data.data;
+                            that.incomeType.map(item => {
+                                if(item.isSubsidy === 1) {
+                                    that.setIncomeData.push({
+                                        typeCode: item.code,
+                                        name: item.name,
+                                        id: null,
+                                        ratio: null,
+                                    });
+                                }
+                            })
+                            console.log('-- 收益补贴类型 --',that.incomeType)
+                        } else {
+                            that.$Message.warning(res.data.retMsg);
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误');
+                    })
+            },
+
+            incomeSet() {  //获取店铺收益补贴值
+                if(this.shopId === null) {
+                    this.$Message.warning('请先选择店铺！')
+                } else {
+                    let that = this;
+                    that.setIncomeData = [];
+                    that.getShopIncomeType();
+                    that.incomeModal = true;
+                    let url = that.serviceurl + '/backstage/shop/getShopIncomeSubsidyValue';
+                    let params = {
+                        shopId: this.shopId,
+                    }
+                    that
+                        .$http(url, params, '', 'get')
+                        .then(res => {
+                            if(res.data.retCode === 0) {
+                                that.incomeData = res.data.data;
+                                console.log(that.incomeData)
+                                that.incomeData.map(item =>{
+                                    that.setIncomeData.map(items => {
+                                        item.typeCode === items.typeCode ? items.ratio = item.ratio : '';
+                                        if(item.typeCode === items.typeCode) {items.id = item.id}
+                                    })
+                                })
+                                that.setIncomeData = that.setIncomeData.map(i =>{
+                                    this.$set(i, 'shopId', that.shopId);
+                                    return i
+                                })
+                                console.log('-- 收益补贴 --',that.setIncomeData);
+                            } else {
+                                that.$Message.warning(res.data.retMsg);
+                            }
+                        })
+                        .catch(e => {
+                            that.$Message.error('请求错误');
+                        })
+                }
+
+            },
+
+            setIncomeSubsidy() {  //修改门店补贴
+                let that = this;
+                let url = that.serviceurl + '/backstage/shop/setShopIncomeSubsidy';
+                that.setIncomeData.map(item =>{
+                    item.ratio = parseInt(item.ratio)
+                })
+                let data = that.setIncomeData;
+                console.log(data)
+                that
+                    .$http(url, '', data, 'post')
+                    .then(res=> {
+                        if(res.data.retCode === 0) {
+                            that.$Message.success('店铺收益补贴比例修改成功！');
+                            that.shopId = null;
+                            that.incomeModal = false;
+                            that.getShopList();
+                        } else {
+                            that.$Message.warning(res.data.retMsg || '店铺收益补贴比例修改失败！');
+                        }
+                    })
+                    .catch(e=> {
+                        that.$Message.error('请求错误')
+                    })
             },
         }
     };

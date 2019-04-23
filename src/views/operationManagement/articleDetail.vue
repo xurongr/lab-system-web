@@ -8,15 +8,15 @@
                 <span style="color: blue">没有想要的类型？前往添加</span>
             </FormItem>
             <FormItem label="文章名称" prop="input">
-                <Input v-model="formItem.input" placeholder="12字以内" :maxlength="12"></Input>
+                <Input v-model="formItem.name" placeholder="12字以内" :maxlength="12"></Input>
             </FormItem>
-            <FormItem label="视频简介"  prop="textarea">
-                <Input v-model="formItem.textarea" type="textarea" placeholder="30字以内" :maxlength="30" :autosize="{minRows: 4,maxRows: 5}"></Input>
+            <FormItem label="文章简介"  prop="textarea">
+                <Input v-model="formItem.synopsis" type="textarea" placeholder="30字以内" :maxlength="30" :autosize="{minRows: 4,maxRows: 5}"></Input>
             </FormItem>
             <FormItem label="文章主图" prop="imageUrl">
                 <div class="logo-img-load">
-                    <Input type="hidden" v-model="formItem.imageUrl"></Input>
-                    <div class="logo-img"><img :src="formItem.imageUrl" alt></div>
+                    <Input type="hidden" v-model="formItem.image"></Input>
+                    <div class="logo-img"><img :src="formItem.image" alt></div>
                     <div class="img-upload">
                         <ali-upload v-on:url="getUploadUrl" id="banner" :isImg="true" :maxNum="1"></ali-upload>
                     </div>
@@ -30,11 +30,11 @@
                 </RadioGroup>
             </FormItem>
             <FormItem prop="video" v-if="disabledGroup === '文章链接'">
-                <Input v-model="formItem.video" placeholder="http://"></Input>
+                <Input v-model="formItem.url" placeholder="http://"></Input>
                 <p style="color: red">文章链接</p>
             </FormItem>
             <FormItem label="文章详情"  prop="textarea" v-if="disabledGroup === '图文编辑'">
-                <Input v-model="formItem.textarea" type="textarea"  placeholder="主要用料" :autosize="{minRows: 7,maxRows: 5}"></Input>
+                <Input v-model="formItem.details" type="textarea"  placeholder="主要用料" :autosize="{minRows: 7,maxRows: 5}"></Input>
             </FormItem>
             <FormItem>
                 <Button class="btn btn-blue">保存</Button>
@@ -55,11 +55,12 @@
                 flag: null, // 1-新增店铺  2-编辑店铺
                 formItem: {
                     title: '四季型',
-                    input: '',
-                    textarea: '',
-                    imageUrl: '',
-                    video: '',
-                    checkAllGroup: '',
+                    synopsis: '',
+                    type: 2,
+                    details: '',
+                    image: '',
+                    resType: 1,
+                    url: '',
                 },
                 disabledGroup: '',
                 sortList: [
@@ -77,21 +78,21 @@
                     },
                 ],
                 ruleValidate: {
-                    title: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ],
-                    input: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ],
-                    textarea: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ],
-                    imageUrl: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ],
-                    checkAllGroup: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ]
+//                    title: [
+//                        { required: true, message: '不能为空', trigger: 'blur' }
+//                    ],
+//                    input: [
+//                        { required: true, message: '不能为空', trigger: 'blur' }
+//                    ],
+//                    textarea: [
+//                        { required: true, message: '不能为空', trigger: 'blur' }
+//                    ],
+//                    imageUrl: [
+//                        { required: true, message: '不能为空', trigger: 'blur' }
+//                    ],
+//                    checkAllGroup: [
+//                        { required: true, message: '不能为空', trigger: 'blur' }
+//                    ]
                 },
             };
         },

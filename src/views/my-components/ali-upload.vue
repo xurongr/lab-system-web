@@ -78,13 +78,13 @@ export default {
                         });
                         this.client = client;
                         const files = document.getElementById(this.id);
-//                        if (
-//                            this.isImg &&
-//              !/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(files.files[0].name)
-//                        ) {
-//                            this.$Message.warning('请上传图片！');
-//                            return false;
-//                        }
+                        if (
+                            this.isImg &&
+              !/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(files.files[0].name)
+                        ) {
+                            this.$Message.warning('请上传图片！');
+                            return false;
+                        }
                         if (files.files) {
                             const fileLen = document.getElementById(this.id).files;
                             // const resultUpload = [];

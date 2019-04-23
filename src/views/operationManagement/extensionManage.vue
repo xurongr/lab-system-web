@@ -60,6 +60,9 @@
         },
         data () {
             return {
+                pageNo: 0,
+                tableData: [],
+                total: 0,
                 keyWord: '',
                 imageUrl: '',
                 phone: null,
@@ -79,8 +82,6 @@
                     }
                 ],
                 start: false,
-                tableData: [],
-                total: 0,
                 modal1: false,
                 flag: 1,
                 table: [
@@ -130,7 +131,7 @@
         },
 
         created () {
-
+            this.getResourceInfo();
         },
 
         methods: {
@@ -138,11 +139,36 @@
                 this.flag = num;
                 this.modal1 =  true;
             },
+
+            getResourceInfo() {   //获取素材列表
+                let that = this;
+                let url = that.serviceurl + '/herbsfoods/getResourceInfoList';
+                let params = {
+                    pageNo: that.pageNo,
+                    pageSize: 10,
+                    iType: 3,
+                }
+                that
+                    .$http(url, params, '', 'get')
+                    .then(res => {
+                        if(res.data.retCode === 0) {
+                            that.tableData = res.data.data.data;
+                            that.total = parseInt(res.data.data.total);
+                            console.log('-- 素材资源 --',that.tableData)
+                        } else {
+                            that.$Message.warning(res.data.retMsg);
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误');
+                    })
+            },
+
             getUploadUrl (val) {
                 this.formItem.imageUrl = `${
                     val[0]
                     }?x-oss-process=image/resize,m_fill,limit_0,h_390,w_750`;
-            }
+            },
         }
     };
 </script>
