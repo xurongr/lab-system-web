@@ -38,7 +38,8 @@ if (domain === 'localhost' || domain === '127.0.0.1') {
     //   context = "/t";
     //   loginUrl = window.location.href;
 } else {
-    serviceurl = `${urlHead}//${domain}${port}/api`;
+    // serviceurl = `${urlHead}//${domain}${port}/api`;
+    serviceurl = `${urlHead}//${domain}${port}/smallWX`;
     context = '/t';
     loginUrl = window.location.href;
 }
