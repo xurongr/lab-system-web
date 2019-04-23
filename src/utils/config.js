@@ -24,7 +24,7 @@ const domain = document.domain;
 // http 或者 https
 const urlHead = document.location.protocol;
 // 端口
-const port = window.location.port !== '7777' ? `:${window.location.port}` : '';
+const port = window.location.port !== '7777' ? `:${window.location.port}` : '7777';
 
 console.log(typeof port);
 console.log({ domain, urlHead, port });
