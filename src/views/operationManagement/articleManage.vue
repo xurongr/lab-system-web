@@ -3,7 +3,7 @@
         <div class="cc-m-b-10 member-list-search">
             <div class="m-search-top">
                 <div class="m-search-top-left">
-                    <p>文章名称 &nbsp;&nbsp;<Input v-model="keyWord" placeholder="关键字模糊搜索" style="width: 110px" /></p>
+                    <p>文章名称 &nbsp;&nbsp;<Input v-model="iName" placeholder="关键字模糊搜索" style="width: 110px" /></p>
                     <p>
                         状态 &nbsp;&nbsp;
                         <Select v-model="state" style="width:130px">
@@ -13,12 +13,12 @@
                 </div>
             </div>
             <div class="m-search-btn">
-                <Button class="btn btn-blue">查询</Button>
+                <Button class="btn btn-blue" @click="searchSource">查询</Button>
                 <Button class="btn btn-blue" @click="goVideoList(1)">新增</Button>
                 <Button class="btn btn-blue" @click="goVideoList(2)">编辑</Button>
-                <Button class="btn btn-blue" @click="start=!start" v-if="start">上架</Button>
-                <Button class="btn btn-blue" @click="start=!start"  v-if="!start">下架</Button>
-                <Button class="btn btn-blue">删除</Button>
+                <Button class="btn btn-blue" @click="operationPutAwaySoltOut(1)" v-if="articleInfo.status !== 1">上架</Button>
+                <Button class="btn btn-blue" @click="operationPutAwaySoltOut(2)"  v-if="articleInfo.status === 1">下架</Button>
+                <Button class="btn btn-blue" @click="operationDelete">删除</Button>
             </div>
         </div>
         <div class="main-body">
@@ -38,20 +38,23 @@
                 total: 0,
                 articleId: null,
                 articleInfo: [],
-                keyWord: '',
-                phone: null,
-                state: '全部',
+                iName: '',
+                state: -1,
                 stateList: [
                     {
-                        value: '全部',
+                        value: -1,
                         label: '全部'
                     },
                     {
-                        value: '启用',
+                        value: 0,
+                        label: '新建'
+                    },
+                    {
+                        value: 1,
                         label: '启用'
                     },
                     {
-                        value: '禁用',
+                        value: 2,
                         label: '禁用'
                     }
                 ],
@@ -91,7 +94,7 @@
                     {
                         title: '专栏',
                         align: 'center',
-                        key: 'foodTypeId'
+                        key: 'typeName'
                     },
                     {
                         title: '状态',
@@ -167,10 +170,42 @@
                 this.getResourceInfo();
             },
 
+            goVideoList (num) {
+                if(num === 1) {
+                    this.$router.push({
+                        path: '/addArticle',
+                        query: {
+                            flag: num,
+                        }
+                    })
+                } else {
+                    if(this.articleId === null) {
+                        this.$Message.warning('请先选择操作对象！');
+                    } else {
+                        this.$router.push({
+                            path: '/editArticle',
+                            query: {
+                                flag: num,
+                                articleInfo: this.articleInfo,
+                            }
+                        })
+                    }
+                }
+            },
+
+            searchSource() {
+                this.pageNo = 0;
+                this.getResourceInfo();
+            },
+
             getResourceInfo() {   //获取文章列表
                 let that = this;
                 let url = that.serviceurl + '/herbsfoods/getResourceInfoList';
+                let status;
+                that.state === -1 ? status = '': status = that.state;
                 let params = {
+                    iName: that.iName,
+                    status: status,
                     pageNo: that.pageNo,
                     pageSize: 10,
                     iType: 2,
@@ -189,6 +224,55 @@
                     .catch(e => {
                         that.$Message.error('请求错误');
                     })
+            },
+
+            operationPutAwaySoltOut(num) {  //上下架  num：1-上架  2-下架
+                let that = this;
+                if(null === that.articleId) {
+                    that.$Message.warning('请先选择资源！');
+                } else {
+                    let url = that.serviceurl + '/herbsfoods/operationMgtPutAwaySoldOut';
+                    let params = {
+                        infoId: that.articleId,
+                        iStatus: num,
+                    };
+                    that
+                        .$http(url, params, '', 'get')
+                        .then(res => {
+                            if(res.data.retCode === 0) {
+                                that.$Message.success('资源状态修改成功！');
+                                that.getResourceInfo();
+                            } else {
+                                that.$Message.warning(res.data.retMsg);
+                            }
+                        })
+                        .catch(e => {
+                            that.$Message.error('请求错误');
+                        })
+                }
+            },
+
+            operationDelete() {     //删除资源
+                let that = this;
+                if(null === that.articleId) {
+                    that.$Message.warning('请先选择资源！');
+                } else {
+                    let url = that.serviceurl + '/herbsfoods/operationMgtDelete';
+                    let params = { resId: that.articleId, type: 2};
+                    that
+                        .$http(url, params, '', 'get')
+                        .then(res => {
+                            if(res.data.retCode === 0) {
+                                that.$Message.success('删除资源成功！');
+                                that.getResourceInfo();
+                            } else {
+                                that.$Message.warning(res.data.retMsg);
+                            }
+                        })
+                        .catch(e => {
+                            that.$Message.error('请求错误');
+                        })
+                }
             },
         }
     };

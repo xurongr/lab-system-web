@@ -18,7 +18,7 @@
                         <Button class="btn btn-blue" @click="searchLevel(1)">查询</Button>
                         <Button class="btn btn-blue" @click="isModal(1)">新增</Button>
                         <Button class="btn btn-blue" @click="isModal(2)">编辑</Button>
-                        <Button class="btn btn-blue" @click="editStatus(1)" v-if="levelManageDto.status === 2">启用</Button>
+                        <Button class="btn btn-blue" @click="editStatus(1)" v-if="levelManageDto.status !== 1">启用</Button>
                         <Button class="btn btn-blue" @click="editStatus(2)" v-if="levelManageDto.status === 1">禁用</Button>
                         <Button class="btn btn-blue" @click="delLevel">删除</Button>
                     </div>
@@ -57,9 +57,9 @@
                         <Button class="btn btn-blue" @click="searchLevel(2)">查询</Button>
                         <Button class="btn btn-blue" @click="isRuleModal(1)">新增</Button>
                         <Button class="btn btn-blue" @click="isRuleModal(2)">编辑</Button>
-                        <Button class="btn btn-blue" @click="start=!start" v-if="start">启用</Button>
-                        <Button class="btn btn-blue" @click="start=!start"  v-if="!start">禁用</Button>
-                        <Button class="btn btn-blue">删除</Button>
+                        <Button class="btn btn-blue" @click="ruleStatusChange(1)" v-if="1 !== levelUpgradeRule.status">启用</Button>
+                        <Button class="btn btn-blue" @click="ruleStatusChange(2)"  v-if="1 == levelUpgradeRule.status">禁用</Button>
+                        <Button class="btn btn-blue" @click="delRule">删除</Button>
                     </div>
                 </div>
                 <div class="main-body">
@@ -374,11 +374,11 @@
             },
 
             choiceUser(row,index) {   //选择表格某一行
-                this.levelId = row.id;
                 if(this.tab === 0) {    //在会员等级页
                     this.levelManageDto.id = row.id;
                     this.levelManageDto.levelName = row.levelName;
                     this.levelManageDto.status = row.status;
+                    this.levelId = row.id;
                     row.typeList.map(item => {
                         if(item.typeName === '直推奖励') {
                             this.levelManageDto.typeList[0] = item;
@@ -390,8 +390,9 @@
                             this.levelManageDto.typeList[3] = item;
                         }
                     });
-                } else {   //在会员升级规则页
+                } else if(this.tab === 1){   //在会员升级规则页
                     this.levelUpgradeRule = row;
+                    this.levelId = row.levelId;
                 }
             },
 
@@ -539,7 +540,7 @@
                 let that = this;
                 let url = this.serviceurl + '/backstage/user/addOrModifyUpgrade';
                 if(that.flag === 1) {that.levelUpgradeRule.createTime = new Date().getTime()}
-                if(that.flag === 2) {that.levelUpgradeRule.updateTime = new Date().getTime()}
+                if(that.flag === 2 || that.flag === 3) {that.levelUpgradeRule.updateTime = new Date().getTime()}
                 let data = that.levelUpgradeRule;
                 that
                     .$http(url, '', data, "post")
@@ -549,6 +550,8 @@
                                 that.$Message.success('等级新增成功！');
                             } else if(that.flag === 2) {
                                 that.$Message.success('等级修改成功！');
+                            } else if(that.flag === 3) {
+                                that.$Message.success('状态修改成功！');
                             }
                             that.levelId = null;
                             that.levelUpgradeRule = {
@@ -588,7 +591,6 @@
                         data = res.data;
                         if(data.retCode === 0) {
                             that.ruleList = data.data.data;
-                            console.log(that.ruleList);
                             that.total = parseInt(data.data.total);
                         } else {
                             that.$Message.warning(data.retMsg)
@@ -597,6 +599,39 @@
                     .catch(e => {
                         that.$Message.error('请求错误')
                     })
+            },
+
+            ruleStatusChange(status) {   //修改升级规则状态
+                if(this.levelId === null) {
+                    this.$Message.warning('请先选择操作对象！');
+                } else {
+                    this.flag = 3;
+                    this.levelUpgradeRule.status = status;
+                    this.submitUpGrade();
+                }
+            },
+
+            delRule() {  //删除 会员升级规则
+                let that = this;
+                if(null == that.levelId || undefined == that.levelId) {
+                    that.$Message.warning('请先选择等级!');
+                } else {
+                    let url = this.serviceurl + '/backstage/user/delUpgrade?levelId='+ that.levelId;
+//                    let data = {levelId: that.levelId};
+                    that
+                        .$http(url, '', '', "post")
+                        .then(res=> {
+                            if(res.data.retCode === 0) {
+                                that.$Message.success('删除升级规则成功！');
+                                that.getGradeList();
+                            } else {
+                                that.$Message.warning(res.data.retMsg || '删除升级规则失败！')
+                            }
+                        })
+                        .catch(e => {
+                            that.$Message.error('请求错误')
+                        })
+                }
             },
         }
     };

@@ -3,13 +3,13 @@
         <div class="cc-m-b-10 member-list-search">
             <div class="m-search-top">
                 <div class="m-search-top-left">
-                    <p>会员名称 &nbsp;&nbsp;<Input v-model="keyWord" placeholder="关键字模糊搜索" style="width: 110px" /></p>
+                    <p>会员名称 &nbsp;&nbsp;<Input v-model="keyword" placeholder="关键字模糊搜索" style="width: 110px" /></p>
                     <p>手机号码 &nbsp;&nbsp;<Input v-model="phone" style="width: 110px" /></p>
-                    <p>店铺名称 &nbsp;&nbsp;<Input v-model="phone" style="width: 110px" /></p>
+                    <p>店铺名称 &nbsp;&nbsp;<Input v-model="shopName" style="width: 110px" /></p>
                     <p>
                         等级 &nbsp;&nbsp;
-                        <Select v-model="level" style="width:130px">
-                            <Option v-for="item in levelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Select v-model="levelId" style="width:130px">
+                            <Option v-for="item in levelSelect" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                     </p>
                     <p>
@@ -22,12 +22,12 @@
                 <p>会员卡总数：152,610</p>
             </div>
             <div class="m-search-btn">
-                <Button class="btn btn-blue">查询</Button>
+                <Button class="btn btn-blue" @click="searchMem">查询</Button>
             </div>
         </div>
         <div class="main-body">
             <Table class="cc-m-t-20" border :columns="table" :data="tableData"></Table>
-            <div class="page"><Page class="cc-m-t-20" :total="total" :key="total"></Page></div>
+            <div class="page"><Page class="cc-m-t-20" :total="total" :key="total" :current="current"  @on-change="changePage"></Page></div>
         </div>
     </div>
 </template>
@@ -36,44 +36,33 @@
     export default {
         data () {
             return {
-                keyWord: '',
-                phone: null,
-                level: '全部',
-                levelList: [
+                pageNo: 0,
+                pageNo1: 0,
+                current: 1,
+                keyword: '',
+                phone: '',
+                shopName: '',
+                levelId: -1,
+                levelTotal: [],    //全部等级
+                levelSelect: [
                     {
-                        value: '全部',
+                        value: -1,
                         label: '全部'
-                    },
-                    {
-                        value: '普通会员',
-                        label: '普通会员'
-                    },
-                    {
-                        value: '百草品客',
-                        label: '百草品客'
-                    },
-                    {
-                        value: '百草创客',
-                        label: '百草创客'
-                    },
-                    {
-                        value: '健康大使',
-                        label: '股东'
                     }
-                ],
-                state: '全部',
+                ],   //等级筛选
+                state: -1,
                 stateList: [
                     {
-                        value: '全部',
+                        value: -1,
                         label: '全部'
                     },
                     {
-                        value: '启用',
-                        label: '启用'
+                        value: 0,
+                        label: '未领用'
                     },
                     {
-                        value: '禁用',
-                        label: '禁用'
+                        value: 1,
+                        label: '已领用'
                     }
                 ],
                 start: false,
@@ -89,41 +78,41 @@
                     {
                         title: '店铺ID',
                         align: 'center',
-                        key: 'customerId'
+                        key: 'shopName'
                     },
                     {
                         title: '会员名称',
                         align: 'center',
-                        key: 'name'
+                        key: 'memName'
                     },
                     {
                         title: '手机号码',
                         align: 'center',
-                        key: 'mobile'
+                        key: 'phone'
                     },
                     {
                         title: '性别',
                         align: 'center',
-                        key: 'sex',
+                        key: 'gender',
                         width: 80,
                         render: (h,params) => {
-                            return h('p',params.row.sex === '0'? '未知':(params.row.sex === '1'? '男':'女'))
+                            return h('p',params.row.gender === '0'? '未知':(params.row.gender === '1'? '男':'女'))
                         }
                     },
                     {
                         title: '会员等级',
                         align: 'center',
-                        key: ''
+                        key: 'levelName'
                     },
                     {
                         title: '会员卡号',
                         align: 'center',
-                        key: ''
+                        key: 'code'
                     },
                     {
                         title: '会员卡ID',
                         align: 'center',
-                        key: 'cardId'
+                        key: 'memCardId'
                     },
                     {
                         title: '余额',
@@ -134,54 +123,125 @@
                     {
                         title: '赠送金额',
                         align: 'center',
-                        key: 'giftBalance',
+                        key: 'giveMoney',
                         width: 90
                     },
                     {
                         title: '实际充值金额',
                         align: 'center',
-                        key: 'realBalance',
+                        key: 'actualRechargeMoney',
                     },
                     {
                         title: '支付累计金额',
                         align: 'center',
-                        key: ''
+                        key: 'totalPayMoney'
                     },
                     {
                         title: '消费累计金额',
                         align: 'center',
-                        key: 'payAmount',
+                        key: 'totalConsumeMoney',
                     },
                     {
                         title: '折扣累计金额',
                         align: 'center',
-                        key: ''
+                        key: 'totalDiscountMoney'
+                    },
+                    {
+                        title: '领用状态',
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('p',{
+
+                                },params.row.getStatus === 0 ? '未领用' : '已领用')
+                            ])
+                        }
                     },
                     {
                         title: '发卡时间',
                         align: 'center',
-                        key: ''
+                        key: 'createTime'
                     }
                 ]
             };
         },
 
         created () {
-//            this.getMenCard();
+            this.getMenCard();
+            this.getLevel();
         },
 
         methods: {
-            getMenCard() {   //会员卡查询
+            changePage(val) {      //改变页码
+                this.pageNo = val - 1;
+                this.getMenCard();
+            },
+
+            getLevel() {   //获取全部等级
                 let that = this;
-                let url = that.serviceurl + '/backstage/userMem/queryMemCard';
+                let url = this.serviceurl + '/backstage/user/pageLevelManage';
+                let params = {
+                    pageNo: that.pageNo1,
+                    pageSize: 10,
+                }
                 let data = null;
                 that
-                    .$http(url, '', data, 'get')
+                    .$http(url, params, data, "get")
+                    .then(res=> {
+                        data = res.data;
+                        if(data.retCode === 0) {
+                            that.levelTotal = that.levelTotal.concat(data.data.data);
+                            let total = parseInt(data.data.total);
+                            if(that.levelTotal.length < total) {
+                                that.pageNo1++;
+                                that.getLevel();
+                            }
+                            that.levelTotal.map(i => {
+                                that.levelSelect.push({
+                                    value: i.id,
+                                    label: i.levelName,
+                                })
+                            })
+                            console.log(that.levelSelect)
+                        } else {
+                            that.$Message.warning(data.retMsg)
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误')
+                    })
+            },
+
+            searchMem() {   //搜索
+                this.pageNo = 0;
+                this.getMenCard();
+            },
+
+            getMenCard() {   //会员卡查询
+                let that = this;
+                let url = that.serviceurl + '/backstage/userMem/pageUserMem';
+                let levelId;
+                let status;
+                that.levelId === -1 ? levelId = '' : levelId = that.levelId;
+                that.state === -1 ? status = '' : status = that.state;
+                let params = {
+                    keyword: that.keyword,
+                    phone:that.phone,
+                    shopName: that.shopName,
+                    levelId: levelId,
+                    status: status,
+                    pageNo: that.pageNo,
+                    pageSize: 10,
+                }
+                let data = null;
+                that
+                    .$http(url, params, data, 'get')
                     .then(res=> {
                         data = res.data;
                         if(data.retCode === 0) {
                             that.tableData = data.data.data;
-                            console.log(that.tableData);
+                            that.total = parseInt(data.data.total);
+                            console.log('会员卡', that.total);
                         } else {
                             that.$Message.warning(data.retMsg);
                         }

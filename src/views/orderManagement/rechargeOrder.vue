@@ -24,7 +24,7 @@
                             <Option v-for="item in payModeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                     </p>
-                    <p>时间 &nbsp;&nbsp;<DatePicker type="datetimerange" placeholder="选择时间段" style="width: 150px;color: #444"></DatePicker></p>
+                    <p>时间 &nbsp;&nbsp;<DatePicker type="datetimerange" placeholder="选择时间段" @on-change="changeTime" style="width: 150px;color: #444"></DatePicker></p>
                 </div>
             </div>
             <div class="m-search-btn">
@@ -90,6 +90,8 @@
                         label: '全部失败'
                     }
                 ],
+                startTime: '',
+                endTime: '',
                 payMode: 0,
                 payModeList: [
                     {
@@ -300,6 +302,17 @@
                 this.getOrders();
             },
 
+            changeTime(time) {   //选择时间段
+                this.startTime = time[0];
+                this.endTime = time[1];
+                if(time[0] === '') {
+                    this.startTime = '';
+                }
+                if(time[1] === '') {
+                    this.endTime = '';
+                }
+            },
+
             getOrders() {    //获取订单列表  type订单类型：1充值订单 2消费订单 3定制订单
                 let that = this;
                 let url = that.serviceurl + '/backstage/order/pageOrder';
@@ -315,6 +328,8 @@
                     shopName: that.shopName,
                     levelId: levelId,
                     status: status,
+                    startTime: that.startTime,
+                    endTime: that.endTime,
                     payMode: payMode,
                     type: 1,
                     pageNo: that.pageNo,

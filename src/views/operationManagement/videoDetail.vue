@@ -1,26 +1,23 @@
 <template>
     <div class="main-body video-list">
         <Form :model="formItem" :rules="ruleValidate" :label-width="80">
-            <FormItem label="视频名称" prop="input">
+            <FormItem label="视频名称" prop="name">
                 <Input v-model="formItem.name" placeholder="12字以内" :maxlength="12"></Input>
             </FormItem>
-            <FormItem label="视频简介"  prop="textarea">
+            <FormItem label="视频简介"  prop="synopsis">
                 <Input v-model="formItem.synopsis" type="textarea" placeholder="300字以内" :maxlength="300" :autosize="{minRows: 4,maxRows: 5}"></Input>
             </FormItem>
-            <!--<FormItem label="视频标签"  prop="checkAllGroup">-->
-                <!--<div class="video-tip">-->
-                    <!--<Button class="btn btn-blue">清热解毒</Button>-->
-                    <!--<Button class="btn btn-blue">滋阴补肾</Button>-->
-                    <!--<Button class="btn btn-blue">止咳平喘</Button>-->
-                    <!--<Button class="btn btn-blue">益气养血</Button>-->
-                    <!--<Button class="btn btn-blue">健脾养胃</Button>-->
-                    <!--<Button class="btn btn-blue">壮阳补肾</Button>-->
-                    <!--<p>没有想要的标签？前往添加</p>-->
-                <!--</div>-->
-            <!--</FormItem>-->
+            <FormItem label="视频标签" prop="ids">
+                <div class="video-tip">
+                    <CheckboxGroup v-model="ids" @on-change="choiceTag">
+                        <Checkbox :label="item.name" v-for="item in videoTag" :key="item.id"></Checkbox>
+                    </CheckboxGroup>
+                    <p style="color: blue;">没有想要的标签？前往添加</p>
+                </div>
+            </FormItem>
             <FormItem label="视频主图" prop="imageUrl">
                 <div class="logo-img-load">
-                    <Input type="hidden" v-model="formItem.image"></Input>
+                    <input type="hidden" v-model="formItem.image"></input>
                     <div class="logo-img"><img :src="formItem.image" alt></div>
                     <div class="img-upload">
                         <ali-upload v-on:url="getUploadUrl" id="banner" :isImg="true" :maxNum="1"></ali-upload>
@@ -53,7 +50,7 @@
             </FormItem>
             <FormItem>
                 <Button class="btn btn-blue" @click="saveOperation">保存</Button>
-                <Button class="btn btn-blue" style="margin-left: 8px">取消</Button>
+                <Button class="btn btn-blue" style="margin-left: 8px" @click="goBack()">取消</Button>
             </FormItem>
         </Form>
     </div>
@@ -70,6 +67,12 @@
         data () {
             return {
                 flag: null, // 1-新增店铺  2-编辑店铺
+                videoTag: [],
+                appResourceInfoExDto: {
+                    appResourcesInfo: {},
+                    ids: []
+                },
+                ids: [],
                 formItem: {
                     name: '',
                     synopsis: '',
@@ -82,40 +85,51 @@
                 },
                 disabledGroup: '',
                 ruleValidate: {
-//                    input: [
-//                        { required: true, message: '不能为空', trigger: 'blur' }
-//                    ],
-//                    textarea: [
-//                        { required: true, message: '不能为空', trigger: 'blur' }
-//                    ],
-//                    imageUrl: [
-//                        { required: true, message: '不能为空', trigger: 'blur' }
-//                    ],
-//                    checkAllGroup: [
-//                        { required: true, message: '不能为空', trigger: 'blur' }
-//                    ]
+                    name: [
+                        { required: true, message: '不能为空', trigger: 'blur' }
+                    ],
+                    synopsis: [
+                        { required: true, message: '不能为空', trigger: 'blur' }
+                    ],
+                    ids: [
+                        { required: true, message: '不能为空', trigger: 'blur' }
+                    ],
+                    imageUrl: [
+                        { required: true, message: '不能为空', trigger: 'blur' }
+                    ]
                 },
             };
         },
 
         created () {
+            this.getTag();   //获取视频标签
             this.flag = this.$route.query.flag;
             if(this.flag === 2) {
                 this.formItem = this.$route.query.videoInfo;
-                this.formItem.resType === 1 ? this.disabledGroup='视频源文件' : this.disabledGroup='视频链接'
+                this.formItem.resType === 1 ? this.disabledGroup='视频源文件' : this.disabledGroup='视频链接';
+                let ids = this.formItem.typeName;
+                let result=ids.split(",");
+                this.ids = result;
             }
         },
 
         methods: {
-            getUploadUrl (val) {
-                this.formItem.image = val[0];
-//                this.formItem.image = `${
-//                    val[0]
-//                    }?x-oss-process=image/resize,m_fill,limit_0,h_390,w_750`;
-            },
-
-            getVideoUploadUrl (val) {
-                this.formItem.video = val[0];
+            getTag() {    //获取视频标签
+                let that = this;
+                let url= that.serviceurl + '/herbsfoods/getAppTag';
+                let params = {type: 2};
+                that
+                    .$http(url, params, '', 'get')
+                    .then(res => {
+                        if(res.data.retCode === 0) {
+                            that.videoTag = res.data.data;
+                        } else {
+                            that.$Message.warning(res.data.retMsg);
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误');
+                    })
             },
 
             changeRodio(val) {
@@ -134,11 +148,24 @@
                 }
             },
 
+            choiceTag(name) {   //选择视频标签
+                this.ids = name;
+                this.appResourceInfoExDto.ids = [];
+                this.ids.map(item => {
+                    this.videoTag.map(i => {
+                        if(item === i.name) {
+                            this.appResourceInfoExDto.ids = this.appResourceInfoExDto.ids.concat(i.id);
+                        }
+                    })
+                })
+            },
+
             addOperation() {   //保存视频信息
                 let that = this;
                 let url= that.serviceurl + '/herbsfoods/operationMgtAdd';
                 that.formItem.createTime = new Date().getTime();
-                let data = that.formItem;
+                that.appResourceInfoExDto.appResourcesInfo = that.formItem;
+                let data = that.appResourceInfoExDto;
                 that
                     .$http(url, '', data, 'post')
                     .then(res => {
@@ -158,7 +185,8 @@
                 let that = this;
                 let url= that.serviceurl + '/herbsfoods/operationMgtEdit';
                 that.formItem.updateTime = new Date().getTime();
-                let data = that.formItem;
+                that.appResourceInfoExDto.appResourcesInfo = that.formItem;
+                let data = that.appResourceInfoExDto;
                 that
                     .$http(url, '', data, 'post')
                     .then(res => {
@@ -172,6 +200,21 @@
                     .catch(e => {
                         that.$Message.error('请求错误');
                     })
+            },
+
+            goBack() {
+                this.$router.push({name: 'videoManage'})
+            },
+
+            getUploadUrl (val) {
+                this.formItem.image = val[0];
+//                this.formItem.image = `${
+//                    val[0]
+//                    }?x-oss-process=image/resize,m_fill,limit_0,h_390,w_750`;
+            },
+
+            getVideoUploadUrl (val) {
+                this.formItem.video = val[0];
             },
         }
     };

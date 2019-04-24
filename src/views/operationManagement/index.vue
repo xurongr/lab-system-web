@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="m-search-btn">
-                <Button class="btn btn-blue" @click="getResourceInfo">查询</Button>
+                <Button class="btn btn-blue" @click="searchSource">查询</Button>
                 <Button class="btn btn-blue" @click="goVideoList(1)">新增</Button>
                 <Button class="btn btn-blue" @click="goVideoList(2)">编辑</Button>
                 <Button class="btn btn-blue" @click="operationPutAwaySoltOut(1)" v-if="videoInfo.status !== 1">上架</Button>
@@ -37,7 +37,6 @@
                 total: 0,
                 tableData: [],   //视频资源
                 iName: '',
-                phone: null,
                 state: -1,
                 stateList: [
                     {
@@ -59,7 +58,6 @@
                 ],
                 videoInfo: [],   //选中视频信息
                 videoId: null,   //选中视频ID
-                start: false,
                 table: [
                     {
                         title: '序号',
@@ -95,7 +93,7 @@
                     {
                         title: '标签',
                         align: 'center',
-                        key: ''
+                        key: 'typeName'
                     },
                     {
                         title: '状态',
@@ -177,13 +175,19 @@
                 }
             },
 
+            searchSource() {
+                this.pageNo = 0;
+                this.getResourceInfo();
+            },
+
             getResourceInfo() {   //获取资源列表
                 let that = this;
                 let url = that.serviceurl + '/herbsfoods/getResourceInfoList';
-                that.state === -1 ? that.state = '': that.state = that.state;
+                let status;
+                that.state === -1 ? status = '': status = that.state;
                 let params = {
                     iName: that.iName,
-                    status: that.state,
+                    status: status,
                     pageNo: that.pageNo,
                     pageSize: 10,
                     iType: 1,
@@ -210,7 +214,7 @@
                     that.$Message.warning('请先选择资源！');
                 } else {
                     let url = that.serviceurl + '/herbsfoods/operationMgtDelete';
-                    let params = { infoId: that.videoId };
+                    let params = { resId: that.videoId, type: 1};
                     that
                         .$http(url, params, '', 'get')
                         .then(res => {

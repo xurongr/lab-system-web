@@ -13,25 +13,46 @@
             <Card>
                 <p slot="title" class="income-title">收益总数 <span>{{incomeTotal}}</span></p>
                 <Row>
-                    <Col span="4">
-                        <div class="income-data">
-                            <p>充值收益 <span>555,555</span></p>
-                            <p>推广部分 <span>555,555</span></p>
-                            <p>补贴部分 <span>555,555</span></p>
+                    <Col span="4" v-for="(item,idx) in incomeGroups" :key="idx">
+                        <div class="income-data" v-if="item.type === 1">
+                            <p>充值收益 <span>{{item.moeny ? item.moeny : 0}}</span></p>
+                            <p>推广部分 <span>{{item.promote ? item.promote : 0}}</span></p>
+                            <p>补贴部分 <span>{{item.subsidy ? item.subsidy : 0}}</span></p>
                         </div>
                     </Col>
-                    <Col span="4">
+                    <Col span="4"  v-if="flag === 0">
                         <div class="income-data">
-                            <p>消费收益 <span>555,555</span></p>
-                            <p>推广部分 <span>555,555</span></p>
-                            <p>补贴部分 <span>555,555</span></p>
+                            <p>充值收益 <span>0</span></p>
+                            <p>推广部分 <span>0</span></p>
+                            <p>补贴部分 <span>0</span></p>
                         </div>
                     </Col>
-                    <Col span="4">
+                    <Col span="4"  v-for="(item, idx1) in incomeGroups" :key="idx1">
+                        <div class="income-data" v-if="item.type === 2">
+                            <p>消费收益 <span>{{item.moeny ? item.moeny : 0}}</span></p>
+                            <p>推广部分 <span>{{item.promote ? item.promote : 0}}</span></p>
+                            <p>补贴部分 <span>{{item.subsidy ? item.subsidy : 0}}</span></p>
+                        </div>
+                    </Col>
+                    <Col span="4"  v-if="flag1 === 0">
                         <div class="income-data">
-                            <p>定制收益 <span>555,555</span></p>
-                            <p>推广部分 <span>555,555</span></p>
-                            <p>补贴部分 <span>555,555</span></p>
+                            <p>消费收益 <span>0</span></p>
+                            <p>推广部分 <span>0</span></p>
+                            <p>补贴部分 <span>0</span></p>
+                        </div>
+                    </Col>
+                    <Col span="4" v-for="(item, index) in incomeGroups" :key="index">
+                        <div class="income-data" v-if="item.type === 3">
+                            <p>定制收益 <span>{{item.moeny ? item.moeny : 0}}</span></p>
+                            <p>推广部分 <span>{{item.promote ? item.promote : 0}}</span></p>
+                            <p>补贴部分 <span>{{item.subsidy ? item.subsidy : 0}}</span></p>
+                        </div>
+                    </Col>
+                    <Col span="4"  v-if="flag2 === 0">
+                        <div class="income-data">
+                            <p>定制收益 <span>0</span></p>
+                            <p>推广部分 <span>0</span></p>
+                            <p>补贴部分 <span>0</span></p>
                         </div>
                     </Col>
                     <Col span="9">
@@ -45,8 +66,7 @@
         </div>
         <div class="store-data-detail">
             <p>数据明细</p>
-            <Table class="cc-m-t-10" border :columns="table" :data="tableData"></Table>
-            <div class="page"><Page class="cc-m-t-20" :total="total" :key="total"></Page></div>
+            <Table class="cc-m-t-10" height="280" border :columns="table" :data="shopIncomeDetail"></Table>
         </div>
     </div>
 </template>
@@ -55,19 +75,18 @@
     export default {
         data () {
             return {
-                pageNo1: 0,
                 pageNo: 0,
-                shopId: null,     //门店ID
+                shopId: 1,     //门店ID
                 startTime: '',
                 endTime: '',
                 shopList: [],     //店铺列表
                 shopSeclect: [],
-                date: '',
                 incomeTotal: 0,         //收益总数
                 shopIncomeDetail: [],   //数据详情
                 incomeGroups: [],       //数据明细
-                tableData: [],
-                total: 0,
+                flag: 0,               // -充值收益无数据
+                flag1: 0,               // - 消费收益无数据
+                flag2: 0,               // -定制收益无数据
                 table: [
                     {
                         title: '序号',
@@ -78,39 +97,71 @@
                     {
                         title: '时间',
                         align: 'center',
-                        key: ''
+                        key: 'yearMonth'
                     },
                     {
                         title: '收益总数',
                         align: 'center',
-                        key: ''
+                        key: 'totalMoney'
                     },
                     {
                         title: '充值收益',
                         align: 'center',
-                        key: ''
+                        render: (h, params) => {
+                            let money;
+                            params.row.shopIncomeDetailsItemDtoList.map(item => {
+                                if(item.type === 1) {
+                                    money = item.money;
+                                    return money;
+                                } else {
+                                    money = 0;
+                                    return money;
+                                }
+                            })
+                            return h('p',money)
+                        }
                     },
                     {
                         title: '消费收益',
                         align: 'center',
-                        key: ''
+                        render: (h, params) => {
+                            let money;
+                            params.row.shopIncomeDetailsItemDtoList.map(item => {
+                                if(item.type === 2) {
+                                    money = item.money;
+                                    return money;
+                                } else {
+                                    money = 0;
+                                    return money;
+                                }
+                            })
+                            return h('p',money)
+                        }
                     },
                     {
                         title: '定制收益',
                         align: 'center',
-                        key: ''
+                        render: (h, params) => {
+                            let money;
+                            params.row.shopIncomeDetailsItemDtoList.map(item => {
+                                if(item.type === 3) {
+                                    money = item.money;
+                                    return money;
+                                } else {
+                                    money = 0;
+                                    return money;
+                                }
+                            })
+                            return h('p',money)
+                        }
                     },
-                    {
-                        title: '商城收益',
-                        align: 'center',
-                        key: ''
-                    }
                 ]
             };
         },
 
         created () {
             this.getShopList();
+            this.getShopData();
         },
 
         methods: {
@@ -118,9 +169,10 @@
                 let that = this;
                 let url = that.serviceurl + '/backstage/shop/pageShop';
                 let params = {
-                    pageNo: that.pageNo1,
+                    pageNo: that.pageNo,
                     pageSize: 10
                 }
+                console.log(params)
                 that
                     .$http(url, params, '', 'get')
                     .then(res => {
@@ -128,7 +180,7 @@
                             that.shopList = that.shopList.concat(res.data.data.data);
                             let total = parseInt(res.data.data.total);
                             if(that.shopList.length < total) {
-                                that.pageNo1++;
+                                that.pageNo++;
                                 that.getShopList();
                             }
                             that.shopList.map(item => {
@@ -147,8 +199,8 @@
             },
 
             changeTime(time) {   //选择时间段
-                this.startTime = new Date(time[0]).getTime();
-                this.endTime = new Date(time[1]).getTime();
+                this.startTime = time[0];
+                this.endTime = time[1];
                 if(time[0] === '') {
                     this.startTime = '';
                 }
@@ -159,13 +211,13 @@
 
             getShopData() {   //获取门店收益数据
                 let that = this;
+                that.initdata();
                 let url = that.serviceurl + '/backstage/shop/getShopData';
                 let params = {
                     shopId: that.shopId,
                     startTime: that.startTime,
                     endTime: that.endTime,
                 };
-                console.log(params)
                 let data = null;
                 that
                     .$http(url, params, data, 'get')
@@ -175,9 +227,12 @@
                             that.shopIncomeDetail = data.data.shopIncomeDetailsDtos;
                             that.incomeGroups = data.data.shopIncomeDto.incomeGroups;
                             that.incomeTotal = data.data.shopIncomeDto.total;
-                            console.log('--that.shopIncomeDetail--',that.shopIncomeDetail)
-                            console.log('--that.incomeGroups--',that.incomeGroups)
-                            console.log('--that.incomeTotal--',that.incomeTotal)
+                            console.log(that.incomeGroups)
+                            that.incomeGroups.map(item => {
+                               if(item.type === 1) {that.flag = 1};
+                               if(item.type === 2) {that.flag1 = 1}
+                               if(item.type === 3) {that.flag2 = 1}
+                            })
                         } else {
                             that.$Message.warning(data.retMsg);
                         }
@@ -185,6 +240,14 @@
                     .catch(e => {
                         that.$Message.error('请求错误');
                     })
+            },
+
+            initdata() {  //初始化数据
+                let that = this;
+                that.flag = 0; that.flag1 =0;that.flag2=0;
+                that.shopIncomeDetail = [];
+                that.incomeGroups =[];
+                that.incomeTotal = 0;
             },
         }
     };
