@@ -2,18 +2,217 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5ce0834-cd88-4437-84fd-313f27aadebd" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/financialManagement/index.vue" afterPath="$PROJECT_DIR$/src/views/financialManagement/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/memberManagement/memberCard.vue" afterPath="$PROJECT_DIR$/src/views/memberManagement/memberCard.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/memberManagement/memberLevel.vue" afterPath="$PROJECT_DIR$/src/views/memberManagement/memberLevel.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/operationManagement/articleDetail.vue" afterPath="$PROJECT_DIR$/src/views/operationManagement/articleDetail.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/operationManagement/articleManage.vue" afterPath="$PROJECT_DIR$/src/views/operationManagement/articleManage.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/operationManagement/extensionManage.vue" afterPath="$PROJECT_DIR$/src/views/operationManagement/extensionManage.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/operationManagement/index.vue" afterPath="$PROJECT_DIR$/src/views/operationManagement/index.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/operationManagement/videoDetail.vue" afterPath="$PROJECT_DIR$/src/views/operationManagement/videoDetail.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/orderManagement/consumeOrder.vue" afterPath="$PROJECT_DIR$/src/views/orderManagement/consumeOrder.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/orderManagement/rechargeOrder.vue" afterPath="$PROJECT_DIR$/src/views/orderManagement/rechargeOrder.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/storeManagement/storeData.vue" afterPath="$PROJECT_DIR$/src/views/storeManagement/storeData.vue" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/0.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/1.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/10.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/11.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/12.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/13.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/14.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/15.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/16.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/17.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/18.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/19.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/2.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/20.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/21.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/22.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/23.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/3.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/4.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/5.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/6.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/7.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/8.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/9.d302cd32ac9f9c9013da.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/fonts/ionicons.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/fonts/ionicons.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/fonts/ionicons.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/fonts/ionicons.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/g.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/langs/en_GB.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/langs/zh_CN.GB2312.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/main.d302cd32ac9f9c9013da.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/main.d302cd32ac9f9c9013da.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/advlist/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/advlist/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/advlist/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/anchor/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/anchor/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/anchor/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autolink/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autolink/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autolink/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autoresize/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autoresize/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autoresize/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autosave/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autosave/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/autosave/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/bbcode/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/bbcode/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/bbcode/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/charmap/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/charmap/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/charmap/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/code/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/code/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/code/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/codesample/css/prism.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/codesample/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/codesample/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/codesample/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/colorpicker/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/colorpicker/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/colorpicker/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/contextmenu/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/contextmenu/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/contextmenu/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/directionality/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/directionality/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/directionality/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-cool.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-cry.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-embarassed.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-frown.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-innocent.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-kiss.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-laughing.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-sealed.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-surprised.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-undecided.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-wink.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/img/smiley-yell.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/emoticons/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/fullpage/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/fullpage/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/fullpage/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/fullscreen/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/fullscreen/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/fullscreen/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/help/img/logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/help/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/help/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/help/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/hr/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/hr/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/hr/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/image/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/image/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/image/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/imagetools/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/imagetools/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/imagetools/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/importcss/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/importcss/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/importcss/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/insertdatetime/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/insertdatetime/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/insertdatetime/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/legacyoutput/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/legacyoutput/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/legacyoutput/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/link/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/link/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/link/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/lists/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/lists/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/lists/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/media/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/media/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/media/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/nonbreaking/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/nonbreaking/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/nonbreaking/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/noneditable/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/noneditable/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/noneditable/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/pagebreak/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/pagebreak/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/pagebreak/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/paste/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/paste/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/paste/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/preview/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/preview/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/preview/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/print/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/print/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/print/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/save/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/save/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/save/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/searchreplace/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/searchreplace/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/searchreplace/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/spellchecker/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/spellchecker/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/spellchecker/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/tabfocus/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/tabfocus/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/tabfocus/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/table/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/table/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/table/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/template/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/template/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/template/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/textcolor/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/textcolor/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/textcolor/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/textpattern/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/textpattern/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/textpattern/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/toc/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/toc/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/toc/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/visualblocks/css/visualblocks.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/visualblocks/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/visualblocks/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/visualblocks/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/visualchars/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/visualchars/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/visualchars/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/wordcount/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/wordcount/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/plugins/wordcount/plugin.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/r.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/content.inline.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/content.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/content.mobile.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce-mobile.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce-small.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce-small.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce-small.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce-small.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/fonts/tinymce.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/img/anchor.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/img/loader.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/img/object.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/img/trans.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/skin.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/skins/lightgray/skin.mobile.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/td_icon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/inlite/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/inlite/theme.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/inlite/theme.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/modern/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/modern/theme.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/themes/modern/theme.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/vender-base.d302cd32ac9f9c9013da.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/vender-exten.d302cd32ac9f9c9013da.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/dist/y.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/index.html" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -188,6 +387,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -217,21 +418,12 @@
               <item name="herbs-foods-vue" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="financialManagement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herbs-foods-vue" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herbs-foods-vue" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="storeManagement" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -331,11 +523,12 @@
       <workItem from="1555898299322" duration="35147000" />
       <workItem from="1555982860961" duration="34267000" />
       <workItem from="1556070610097" duration="37169000" />
+      <workItem from="1556112419771" duration="105000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="300488000" />
+    <option name="totallyTimeSpent" value="300593000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -349,17 +542,16 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17702845" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17702845" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278328" sideWeight="0.5063898" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18851571" sideWeight="0.49361023" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18851571" sideWeight="0.49361023" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -370,6 +562,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,12 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
           <caret line="104" column="32" lean-forward="true" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
-          <folding>
-            <element signature="e#899#1237#0" expanded="false" />
-            <element signature="e#1299#1801#0" expanded="false" />
-            <element signature="e#1868#2172#0" expanded="false" />
-            <element signature="e#2383#2828#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -494,11 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#Button#0;n#FormItem#2;n#Form#0;n#div#1;n#Card#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#1476#1816#0" expanded="false" />
-            <element signature="e#1879#2149#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -513,7 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="20" column="3" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -521,9 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-          <folding>
-            <marker date="1555910621072" expanded="true" signature="7471:7486" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -552,7 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
           <caret line="12" column="69" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -560,7 +737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1879">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -575,7 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="85" column="114" lean-forward="true" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="114" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -645,9 +820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#22#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -676,7 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -792,18 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="313" column="14" lean-forward="true" selection-start-line="313" selection-start-column="14" selection-end-line="313" selection-end-column="14" />
-          <folding>
-            <element signature="e#2615#2750#0" expanded="false" />
-            <element signature="e#2807#3644#0" expanded="false" />
-            <element signature="e#3763#4361#0" expanded="false" />
-            <element signature="e#4486#9416#0" expanded="false" />
-            <element signature="e#6391#7839#0" expanded="false" />
-            <element signature="e#8051#9204#0" expanded="false" />
-            <element signature="e#9586#11039#0" expanded="false" />
-            <element signature="e#11070#11166#0" expanded="false" />
-            <element signature="e#11195#11284#0" expanded="false" />
-            <element signature="e#13339#14126#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -811,14 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
           <caret line="216" column="34" lean-forward="false" selection-start-line="216" selection-start-column="34" selection-end-line="216" selection-end-column="34" />
-          <folding>
-            <element signature="e#1964#2098#0" expanded="false" />
-            <element signature="e#2163#2529#0" expanded="false" />
-            <element signature="e#2641#5888#0" expanded="false" />
-            <element signature="e#5458#5681#0" expanded="false" />
-            <element signature="e#6183#7616#0" expanded="false" />
-            <element signature="e#7761#9102#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -837,16 +988,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="145" column="24" lean-forward="false" selection-start-line="145" selection-start-column="24" selection-end-line="145" selection-end-column="24" />
-          <folding>
-            <element signature="e#1893#2372#0" expanded="false" />
-            <element signature="e#2912#3260#0" expanded="false" />
-            <element signature="e#5766#5868#0" expanded="false" />
-            <element signature="e#5901#6642#0" expanded="false" />
-            <element signature="e#6672#6760#0" expanded="false" />
-            <element signature="e#6793#7884#0" expanded="false" />
-            <element signature="e#7917#8851#0" expanded="false" />
-            <element signature="e#8895#9927#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -854,16 +995,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="111" column="34" lean-forward="false" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
-          <folding>
-            <element signature="e#3421#3510#0" expanded="false" />
-            <element signature="e#3563#3831#0" expanded="false" />
-            <element signature="e#3898#4435#0" expanded="false" />
-            <element signature="e#4962#5609#0" expanded="false" />
-            <element signature="e#5641#5831#0" expanded="false" />
-            <element signature="e#5862#6041#0" expanded="false" />
-            <element signature="e#6515#7394#0" expanded="false" />
-            <element signature="e#7425#8303#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -871,18 +1002,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="188" column="61" lean-forward="false" selection-start-line="188" selection-start-column="50" selection-end-line="188" selection-end-column="61" />
-          <folding>
-            <element signature="e#1954#2433#0" expanded="false" />
-            <element signature="e#2488#5488#0" expanded="false" />
-            <element signature="e#2919#3267#0" expanded="false" />
-            <element signature="e#5634#6141#0" expanded="false" />
-            <element signature="e#6178#6286#0" expanded="false" />
-            <element signature="e#6317#6419#0" expanded="false" />
-            <element signature="e#7233#7321#0" expanded="false" />
-            <element signature="e#7354#8445#0" expanded="false" />
-            <element signature="e#8489#9525#0" expanded="false" />
-            <element signature="e#9558#10496#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -909,17 +1028,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="173" column="14" lean-forward="false" selection-start-line="173" selection-start-column="14" selection-end-line="173" selection-end-column="14" />
-          <folding>
-            <element signature="e#3149#3528#0" expanded="false" />
-            <element signature="e#3560#4105#0" expanded="false" />
-            <element signature="e#4556#5540#0" expanded="false" />
-            <element signature="e#5572#5761#0" expanded="false" />
-            <element signature="e#6001#6882#0" expanded="false" />
-            <element signature="e#6913#7793#0" expanded="false" />
-            <element signature="e#7817#7892#0" expanded="false" />
-            <element signature="e#7926#7987#0" expanded="false" />
-            <element signature="e#8173#9151#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -927,13 +1035,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="214" column="12" lean-forward="false" selection-start-line="214" selection-start-column="12" selection-end-line="214" selection-end-column="12" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#6947#8993#0" expanded="false" />
-            <element signature="e#9195#10505#0" expanded="false" />
-            <element signature="e#11011#11878#0" expanded="false" />
-            <element signature="e#11908#12000#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
