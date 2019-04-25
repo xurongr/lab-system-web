@@ -26,15 +26,19 @@
                             </g>
                         </g>
                     </svg>
-                    <p>会员统计<span>888888</span> </p>
+                    <p>会员统计<span>{{statisticsDtoByMem.total}}</span> </p>
                 </div>
                 <a href="#" slot="extra">查看更多</a>
                 <div class="home-total-cont">
                     <p>昨日新增</p>
-                    <p>88888</p>
+                    <p>{{statisticsDtoByMem.newCount}}</p>
                 </div>
                 <div class="home-total-bottom">
-                    <div>
+                    <div v-for="item in statisticsDtoByMem.statisticsItemDtoList" :key="item.key">
+                        <p>{{item.key}}</p>
+                        <p>{{item.value}}</p>
+                    </div>
+                    <!-- <div>
                         <p>普通会员</p>
                         <p>432</p>
                     </div>
@@ -45,11 +49,7 @@
                     <div>
                         <p>普通会员</p>
                         <p>432</p>
-                    </div>
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
-                    </div>
+                    </div> -->
                 </div>
             </Card>
             <Card style="width:30%">
@@ -81,29 +81,17 @@
                             </g>
                         </g>
                     </svg>
-                    <p>订单统计<span>888888</span> </p>
+                    <p>订单统计<span>{{statisticsDtoByOrderCount.total}}</span> </p>
                 </div>
                 <a href="#" slot="extra">查看更多</a>
                 <div class="home-total-cont">
                     <p>昨日新增</p>
-                    <p>88888</p>
+                    <p>{{statisticsDtoByOrderCount.newCount}}</p>
                 </div>
                 <div class="home-total-bottom">
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
-                    </div>
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
-                    </div>
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
-                    </div>
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
+                    <div v-for="item in statisticsDtoByOrderCount.statisticsItemDtoList" :key="item.key">
+                        <p>{{item.key}}</p>
+                        <p>{{item.value}}</p>
                     </div>
                 </div>
             </Card>
@@ -132,29 +120,17 @@
                             </g>
                         </g>
                     </svg>
-                    <p>订单总额<span>888888</span> </p>
+                    <p>订单总额<span>{{statisticsDtoByOrderMoney.total}}</span> </p>
                 </div>
                 <a href="#" slot="extra">查看更多</a>
                 <div class="home-total-cont">
                     <p>昨日新增</p>
-                    <p>88888</p>
+                    <p>{{statisticsDtoByOrderMoney.total}}</p>
                 </div>
                 <div class="home-total-bottom">
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
-                    </div>
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
-                    </div>
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
-                    </div>
-                    <div>
-                        <p>普通会员</p>
-                        <p>432</p>
+                    <div v-for="item in statisticsDtoByOrderMoney.statisticsItemDtoList" :key="item.key">
+                        <p>{{item.key}}</p>
+                        <p>{{item.value}}</p>
                     </div>
                 </div>
             </Card>
@@ -231,11 +207,11 @@
                 <div class="home-center-cont home-center-cont-right">
                     <div style="width: 43%">
                         <p><img src="@/images/icon_rectangle4.png"><span>待打款</span></p>
-                        <p>5</p>
+                        <p>{{noPayCount}}</p>
                     </div>
                     <div style="width: 43%">
                         <p><img src="@/images/icon_rectangle3.png"><span>已完成</span></p>
-                        <p>76</p>
+                        <p>{{payCount}}</p>
                     </div>
                 </div>
             </Card>
@@ -261,12 +237,29 @@
                     </g>
                 </svg>
                 <p>常用功能</p>
+                <div class="indexMune">
+                    <img src="@/images/icon_rectangle3.png">
+                    <p>百草膳管理系统操作手册</p>
+                    <img src="@/images/icon_rectangle3.png">
+                    <p class="pr48">操作流程</p>
+                </div>
             </div>
-            <a href="#" slot="extra">查看更多</a>
-            <div class="home-total-cont">
+            <!-- <a href="#" slot="extra">查看更多</a> -->
+            <!-- <div class="home-total-cont">
                 <p>昨日新增</p>
                 <p>88888</p>
-            </div>
+            </div> -->
+            <div class="menuAll">
+                    <div class="menuSingle">
+                        <img src="@/images/icon_rectangle3.png"><span>菜品管理</span>
+                    </div>
+                    <div class="menuSingle">
+                        <img src="@/images/icon_rectangle3.png"><span>订单管理</span>
+                    </div>
+                    <div class="menuSingle">
+                        <img src="@/images/icon_rectangle3.png"><span>财务管理</span>
+                    </div>
+             </div>
         </Card>
     </div>
 </template>
@@ -275,12 +268,37 @@
 export default {
     data() {
         return {
-
+            statisticsDtoByMem:{},
+            statisticsDtoByOrderCount:{},
+            statisticsDtoByOrderMoney:{},
+            noPayCount:0,
+            payCount:0
         }
     },
 
     created() {
+        let that=this;
+        let url = that.serviceurl + '/backstage/admin/getIndexData';
+        let params = {
 
+        }
+        that.$http(url, params, '', 'get')
+            .then(res => {
+                        if(res.data.retCode === 0) {
+                            console.log(res.data)
+                            that.noPayCount=res.data.data.noPayCount;
+                            that.payCount=res.data.data.payCount;
+                            that.statisticsDtoByMem=res.data.data.statisticsDtoByMem;
+                            console.log(that.statisticsDtoByMem)
+                            that.statisticsDtoByOrderCount=res.data.data.statisticsDtoByOrderCount;
+                            that.statisticsDtoByOrderMoney=res.data.data.statisticsDtoByOrderMoney;
+                        } else {
+                            that.$Message.warning(res.data.retMsg);
+                        }
+            })
+            .catch(e => {
+            that.$Message.error('请求错误');
+            })
     },
 
     methods: {
@@ -290,4 +308,50 @@ export default {
 </script>
 <style lang="less">
 @import "./home.less";
+.indexMune{
+    position: absolute;
+    right:0px;
+}
+.indexMune img{
+    width:27px !important;
+    height:27px!important;
+}
+.indexMune p{
+    height:25px!important;
+    font-size:18px!important;
+    font-family:PingFangSC-Regular!important;
+    font-weight:400!important;
+    color:rgba(204,204,204,1)!important;
+    line-height:25px!important;
+    padding-left: 3px!important;
+}
+.pr48{
+    padding-right:48px!important;
+}
+.home-total-title{
+    align-items: center !important;
+}
+.home-body .ivu-card-head{
+    box-shadow: 0px 18px 11px -6px rgba(156, 143, 62, 0.09) !important;
+}
+.menuSingle{
+    width:170px;
+    height:44px;
+    background:rgba(255,255,255,1);
+    border-radius:10px;
+    border:2px solid rgba(156,143,62,1);
+    color:rgba(156,143,62,1);
+    display:flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.menuAll{
+    display:flex;
+    padding:60px 0px 39px 52px;
+}
+.menuAll img{
+    margin: 0px 22px;
+    width: 25px;
+    height: 25px;
+}
 </style>

@@ -12,7 +12,7 @@
                         </Select>
                     </p>
                 </div>
-                <p>未打款{{pay}}，已打款{{noPay}}</p>
+                <p>未打款{{noPay}}，已打款{{pay}}</p>
             </div>
             <div class="m-search-btn">
                 <Button class="btn btn-blue" @click="searchCash">查询</Button>
@@ -41,6 +41,8 @@
     export default {
         data () {
             return {
+                withdrawId:"",
+                withdrawInfo:{},
                 pageNo: 0,
                 current: 1,
                 total: 0,
@@ -163,7 +165,9 @@
             },
 
             choiceUser(row,index) {   //选择表格某一行
-                console.log(row)
+                this.withdrawId = row.id;
+                this.withdrawInfo = row;
+                console.log(this.withdrawInfo)
             },
 
             getCash() {   //分页获取体现列表
@@ -198,7 +202,37 @@
             },
 
             confirmCash() {  //审核打款
-              this.levelSet = true;
+            //   this.levelSet = true;
+               let that=this;
+               if(this.withdrawId==""){
+                this.$Message.warning('请先选择操作对象！');
+               }
+               else{
+                   if(that.withdrawInfo.status==1)
+                   {
+                       this.$Message.warning('操作对象已打款！');
+                   }
+                   else{
+                       let url = that.serviceurl + '/backstage/financial/pageCashWithdrawal';
+                       let params = {
+                           cwNum: that.withdrawInfo.cwNum,
+                           status: 0
+                           }
+                           that.$http(url, params, '', 'get')
+                           .then(res => {
+                               if(res.data.retCode === 0) {
+                                   that.$Message.success('打款成功！')
+                                   this.pageNo = 0;
+                                   this.getCash();
+                                } else{
+                                    that.$Message.warning(res.data.retMsg);
+                                    }
+                                
+                                }) .catch(e => {
+                                   that.$Message.error('请求错误');
+                                })
+                     }
+               }
             },
         }
     };
