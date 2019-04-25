@@ -305,6 +305,14 @@ export const appRouter = [
                 access: 0,
                 component: () => import("@/views/operationManagement/extensionManage")
             },
+            {
+                path: "uploadBanner",
+                icon: "i iconfont icon-guanli",
+                title: "轮播图管理",
+                name: "uploadBanner",
+                access: 0,
+                component: () => import("@/views/operationManagement/uploadBanner")
+            },
         ]
     },
     // {

@@ -233,6 +233,7 @@
                                if(item.type === 2) {that.flag1 = 1}
                                if(item.type === 3) {that.flag2 = 1}
                             })
+
                         } else {
                             that.$Message.warning(data.retMsg);
                         }

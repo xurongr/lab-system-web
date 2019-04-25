@@ -1,5 +1,5 @@
 <template>
-    <div class="main-body reward">
+    <div class="main-body banner">
         <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" :label-width="150">
             <FormItem label="推广会员可提现比例：" prop="resKey">
                 <div style="position: relative;">
@@ -22,13 +22,12 @@
 
 <script>
     export default {
-        data () {
+        data() {
             return {
                 formCustom: {
                     resKey: '',
                     value: ''
                 },
-                sysResourcesConfigDtoList: [],
                 ruleCustom: {
                     resKey: [
                         {required: true, trigger: 'blur' }
@@ -37,59 +36,17 @@
                         {required: true, trigger: 'blur' }
                     ]
                 }
-            };
+            }
         },
 
-        created () {
+        created() {
 
         },
 
-        methods: {
-            handleSubmit (name) {
-                this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        this.setReword();
-                    } else {
-                        this.$Message.error('请填写完整!');
-                    }
-                });
-            },
-            setReword() {   //设置奖励
-                let that = this;
-                let url = that.serviceurl + '/backstage/sys/config/modify';
-                that.sysResourcesConfigDtoList[0]= that.formCustom;
-                let data = that.sysResourcesConfigDtoList;
-                that
-                    .$http(url, '', data, "post")
-                    .then(res=> {
-                        if (res.data.retCode === 0) {
-                            that.$Message.success('修改成功');
-                        } else {
-                            this.$Message.warning(res.data.retMsg || '修改失败！');
-                        }
-                    })
-                    .catch(e => {
-                        that.$Message.warning('请求错误！');
-                    })
-            },
-        }
-    };
+        methods: {},
+    }
 </script>
 
 <style lang="less" scoped>
-    .reward {
-        /deep/ .ivu-input {
-            width: 300px;
-        }
-        .tips {
-            position: absolute;
-            top: 0;
-            left: 310px;
-            color: red;
-        }
-        button {
-            border-radius: 20px;
-            width: 100px;
-        }
-    }
+
 </style>

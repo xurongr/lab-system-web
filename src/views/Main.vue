@@ -80,7 +80,7 @@
                     <span>传承千年草膳文化，弘扬食疗养生之道。</span>
                 </div>
                 <div class="header-avator-con">
-                    <Button>
+                    <Button @click="backLogin">
                         <svg width="15px" height="15px"
                              viewBox="0 0 22 22"
                              version="1.1"
@@ -106,7 +106,7 @@
             </div>
             <div class="tags-con">
                 <breadcrumb-nav :currentPath="currentPath"></breadcrumb-nav>
-                <div><Button @click="backHome">返回首页</Button></div>
+                <div v-if="currentPath.length > 1"><Button @click="backHome" class="btn btn-blue">返回首页</Button></div>
             </div>
         </div>
         <div class="single-page-con" :style="{left: shrink?'60px':'200px'}">
@@ -116,21 +116,6 @@
                 </keep-alive>
             </div>
         </div>
-        <Modal
-        v-model="modifyModal"
-        title="修改密码"
-        :loading="loading"
-        @on-ok="modifyPwdConfirm"
-        @on-cancel="modifyPwdCancel">
-        <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" :label-width="80">
-        <FormItem label="新密码" prop="passwd">
-            <Input class="cc-w-300" type="password" v-model="formCustom.passwd"></Input>
-        </FormItem>
-        <FormItem label="确认密码" prop="passwdCheck">
-            <Input class="cc-w-300"  type="password" v-model="formCustom.passwdCheck"></Input>
-        </FormItem>
-    </Form>
-    </Modal>
     </div>
 </template>
 <script>
@@ -207,11 +192,18 @@ export default {
         }
     },
     methods: {
-    // 返回首页
+       // 返回首页
         backHome () {
             this.$router.push({
                 name: 'home_index'
             });
+        },
+
+        backLogin() {   //退出系统
+           this.Cookies.remove('user');
+           this.Cookies.remove('token');
+           this.Cookies.remove('access');
+           this.$router.push({name: 'login'})
         },
 
         init () {
@@ -257,60 +249,9 @@ export default {
             }
         },
 
-        beforePush (name) {
-            // if (name === 'accesstest_index') {
-            //     return false;
-            // } else {
-            //     return true;
-            // }
-            return true;
-        },
         scrollBarResize () {
             this.$refs.scrollBar.resize();
         },
-        // 修改密码
-        modifyPwd () {
-            this.modifyModal = true;
-        },
-        // 取消修改密码
-        modifyPwdCancel () {
-            this.$refs.formCustom.resetFields();
-        },
-        // 修改密码提交
-        modifyPwdConfirm () {
-            this.$refs.formCustom.validate(valid => {
-                this.loading = false;
-                if (valid) {
-                    this.$http({
-                        url: this.serviceurl + '/weteam-service/mgt/user/passwd/chg',
-                        method: 'post',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        data: `newPasswd=${this.formCustom.passwd}`
-                    })
-                        .then(res => {
-                            if (res.data.retCode === 0) {
-                                this.modifyModal = false;
-                                this.$Message.success(res.data.retMsg || '密码修改成功！');
-                            } else {
-                                setTimeout(() => {
-                                    this.loading = true;
-                                }, 200);
-                                this.$Message.warning(res.data.retMsg || '密码修改失败！');
-                            }
-                        })
-                        .catch(e => {
-                            setTimeout(() => {
-                                this.loading = true;
-                            }, 200);
-                            console.log(e);
-                        });
-                } else {
-                    setTimeout(() => {
-                        this.loading = true;
-                    }, 200);
-                }
-            });
-        }
     },
     watch: {
         $route (to) {

@@ -3,7 +3,7 @@
         <div class="cc-m-b-10 member-list-search">
             <div class="m-search-top">
                 <div class="m-search-top-left">
-                    <p>会员名称 &nbsp;&nbsp;<Input v-model="keyWord" placeholder="关键字模糊搜索" style="width: 110px" /></p>
+                    <p>会员名称 &nbsp;&nbsp;<Input v-model="userName" placeholder="关键字模糊搜索" style="width: 110px" /></p>
                     <p>手机号码 &nbsp;&nbsp;<Input v-model="phone" style="width: 110px" /></p>
                     <p>
                         状态 &nbsp;&nbsp;
@@ -12,16 +12,16 @@
                         </Select>
                     </p>
                 </div>
-                <p>未打款10，已打款100</p>
+                <p>未打款{{pay}}，已打款{{noPay}}</p>
             </div>
             <div class="m-search-btn">
-                <Button class="btn btn-blue">查询</Button>
-                <Button class="btn btn-blue" @click="isLevelSet">审核打款</Button>
+                <Button class="btn btn-blue" @click="searchCash">查询</Button>
+                <Button class="btn btn-blue" @click="confirmCash">审核打款</Button>
             </div>
         </div>
         <div class="main-body">
-            <Table class="cc-m-t-20" border :columns="table" :data="tableData"></Table>
-            <div class="page"><Page class="cc-m-t-20" :total="total" :key="total"></Page></div>
+            <Table class="cc-m-t-20" border :columns="table" :data="tableData" @on-row-click="choiceUser" :highlight-row="true"></Table>
+            <div class="page"><Page class="cc-m-t-20" :total="total" :key="total" :current="current" @on-change="changePage"></Page></div>
         </div>
         <Modal
                 v-model="levelSet"
@@ -41,49 +41,30 @@
     export default {
         data () {
             return {
-                keyWord: '',
-                phone: null,
-                level: '全部',
-                levelList: [
-                    {
-                        value: '全部',
-                        label: '全部'
-                    },
-                    {
-                        value: '普通会员',
-                        label: '普通会员'
-                    },
-                    {
-                        value: '百草品客',
-                        label: '百草品客'
-                    },
-                    {
-                        value: '百草创客',
-                        label: '百草创客'
-                    },
-                    {
-                        value: '健康大使',
-                        label: '股东'
-                    }
-                ],
-                state: '全部',
+                pageNo: 0,
+                current: 1,
+                total: 0,
+                tableData: [],  //体现列表
+                userName: '',
+                phone: '',
+                state: -1,
                 stateList: [
                     {
-                        value: '全部',
+                        value: -1,
                         label: '全部'
                     },
                     {
-                        value: '启用',
-                        label: '启用'
+                        value: 0,
+                        label: '未打款'
                     },
                     {
-                        value: '禁用',
-                        label: '禁用'
+                        value: 1,
+                        label: '已打款'
                     }
                 ],
+                pay: 0,     //已打款金额
+                noPay: 0,   //未打款金额
                 start: false,
-                tableData: [],
-                total: 0,
                 levelSet: false, // 等级设置弹框
                 table: [
                     {
@@ -95,70 +76,130 @@
                     {
                         title: '会员名称',
                         align: 'center',
-                        key: ''
+                        key: 'userName'
                     },
                     {
                         title: '手机号码',
                         align: 'center',
-                        key: ''
+                        render: (h,params) =>{
+                            return h('p',params.row.userBankInfo.phone);
+                        }
                     },
                     {
                         title: '提现金额',
                         align: 'center',
-                        key: ''
+                        key: 'money',
+                        width: 100,
                     },
                     {
                         title: '剩余金额',
                         align: 'center',
-                        key: ''
+                        key: 'withdrawable',
+                        width: 100,
                     },
                     {
                         title: '收款账户',
                         align: 'center',
-                        key: ''
+                        render: (h,params) =>{
+                            return h('p',params.row.userBankInfo.bankNum);
+                        }
                     },
                     {
                         title: '收款银行',
                         align: 'center',
-                        key: ''
+                        render: (h,params) =>{
+                            return h('p',params.row.userBankInfo.bank);
+                        }
                     },
                     {
                         title: '银行卡号',
                         align: 'center',
-                        key: ''
+                        render: (h,params) =>{
+                            return h('p',params.row.userBankInfo.bankNum);
+                        }
                     },
                     {
                         title: '支行',
                         align: 'center',
-                        key: ''
+                        render: (h,params) =>{
+                            return h('p',params.row.userBankInfo.subbranch);
+                        }
                     },
                     {
                         title: '状态',
                         align: 'center',
-                        key: ''
+                        width: 80,
+                        render: (h,params) =>{
+                            return h('p',params.row.status == 0 ? '未打款' : '已打款');
+                        }
                     },
                     {
                         title: '创建时间',
                         align: 'center',
-                        key: ''
+                        key: 'createTime'
                     },
                     {
                         title: '打款时间',
                         align: 'center',
-                        key: ''
+                        key: 'payTime'
                     }
                 ]
             };
         },
 
         created () {
-
+            this.getCash();
         },
 
         methods: {
-            isLevelSet () {
-                this.levelSet = true;
-            }
+            changePage(val) {  //改变页码
+                this.pageNo = val - 1;
+                this.getCash();
+            },
+
+            searchCash() {
+                this.pageNo = 0;
+                this.getCash();
+            },
+
+            choiceUser(row,index) {   //选择表格某一行
+                console.log(row)
+            },
+
+            getCash() {   //分页获取体现列表
+                let that = this;
+                let url = that.serviceurl + '/backstage/financial/pageCashWithdrawal';
+                let status;
+                that.state === -1 ? status = '' : status = that.state;
+                let params = {
+                    userName: that.userName,
+                    phone: that.phone,
+                    status: status,
+                    pageNo: that.pageNo,
+                    pageSize: 10
+                }
+                that
+                    .$http(url, params, '', 'get')
+                    .then(res => {
+                        if(res.data.retCode === 0) {
+                            console.log(res.data)
+                            that.pay = res.data.data.pay;
+                            that.noPay = res.data.data.noPay;
+                            that.tableData =res.data.data.userCashWithdrawalResultPageDto.data;
+                            that.total = parseInt(res.data.data.userCashWithdrawalResultPageDto.total);
+                            console.log('体现列表-',that.tableData)
+                        } else {
+                            that.$Message.warning(res.data.retMsg);
+                        }
+                    })
+                    .catch(e => {
+                        that.$Message.error('请求错误');
+                    })
+            },
+
+            confirmCash() {  //审核打款
+              this.levelSet = true;
+            },
         }
     };
 </script>
