@@ -1,18 +1,15 @@
 <template>
     <div class="main-body article-list">
-        <Form :model="formItem" :rules="ruleValidate" :label-width="80">
-            <FormItem label="门店名称" prop="foodTypeId">
-                <Select v-model="formItem.foodTypeId" style="width:130px">
+        <Form :model="formItem"  :label-width="80">
+            <FormItem label="门店名称" prop="shopId">
+                <Select v-model="formItem.shopId" style="width:130px">
                     <Option v-for="item in storeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
             </FormItem>
-            <FormItem label="图片名称" prop="name">
+            <FormItem label="图片名称" prop="bannerName">
                 <Input v-model="formItem.bannerName" placeholder="12字以内" :maxlength="12"></Input>
             </FormItem>
-            <!-- <FormItem label="文章简介"  prop="synopsis">
-                <Input v-model="formItem.synopsis" type="textarea" placeholder="30字以内" :maxlength="30" :autosize="{minRows: 4,maxRows: 5}"></Input>
-            </FormItem> -->
-            <FormItem label="文章主图" prop="imageUrl">
+           <FormItem label="图片地址" prop="imageUrl">
                 <div class="logo-img-load">
                     <Input type="hidden" v-model="formItem.imageUrl"></Input>
                     <div class="logo-img"><img :src="formItem.imageUrl" alt></div>
@@ -22,18 +19,18 @@
                     <p class="img-tips">规格尺寸：750*400</p>
                 </div>
             </FormItem>
-            <!-- <FormItem>
-                <RadioGroup v-model="disabledGroup" @on-change="changeRodio">
-                    <Radio label="图文编辑"></Radio>
-                    <Radio label="文章链接"></Radio>
-                </RadioGroup>
-            </FormItem> -->
-            <FormItem prop="video" v-if="disabledGroup === '文章链接'">
+            
+            <FormItem prop="imageLink" label="图片链接">
                 <Input v-model="formItem.imageLink" placeholder="http://"></Input>
-                <p style="color: red">文章链接</p>
             </FormItem>
-            <FormItem label="文章详情"  prop="textarea" v-if="disabledGroup === '图文编辑'">
-                <Input v-model="formItem.details" type="textarea"  placeholder="主要用料" :autosize="{minRows: 7,maxRows: 5}"></Input>
+             <FormItem label="备注"  prop="remark">
+                <Input v-model="formItem.remark" type="textarea" placeholder="30字以内" :maxlength="30" :autosize="{minRows: 4,maxRows: 5}"></Input>
+            </FormItem>
+            <FormItem label="状态">
+                <RadioGroup v-model="disabledGroup" @on-change="changeRodio">
+                    <Radio label="禁用"></Radio>
+                    <Radio label="启用"></Radio>
+                </RadioGroup>
             </FormItem>
             <FormItem>
                 <Button class="btn btn-blue" @click="saveOperation">保存</Button>
@@ -58,111 +55,106 @@
                     ids: []
                 },
                 formItem: {
-                    foodTypeId: null,
-                    bannerName: '',
-                    synopsis: '',
-                    type: 2,
-                    details: '',
-                    imageUrl: '',
-                    resType: 1,
-                    imageLink: '',
-                    remark:""
-                },
+                    "bannerName": "",
+                    "createTime": "",
+                    "id": 0,
+                    "imageLink": "",
+                    "imageUrl": "",
+                    "remark": "",
+                    "shopId": "",
+                    "sort": 0,
+                    "status": -1,
+                    "type": 1,
+                    "updateTime": ""
+                    },
                 disabledGroup: '',
-                sortList: [
-                    {
-                        value: '四季型',
-                        label: '四季型'
-                    },
-                    {
-                        value: '功效型',
-                        label: '功效型'
-                    },
-                    {
-                        value: '体质型',
-                        label: '体质型'
-                    },
-                ],
-                ruleValidate: {
-                    foodTypeId: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ],
-                    name: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ],
-                    synopsis: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ],
-                    imageUrl: [
-                        { required: true, message: '不能为空', trigger: 'blur' }
-                    ],
-                },
             };
         },
 
         created () {
-            this.getStoreList();   //获取标签类型
+            this.getStoreList();   //获取门店列表
             this.flag = this.$route.query.flag;
             if(this.flag === 2) {
-                this.formItem = this.$route.query.articleInfo;
-                this.formItem.resType === 1 ? this.disabledGroup='图文编辑' : this.disabledGroup='文章链接';
-                this.ids = this.formItem.typeName;
+                this.formItem = this.$route.query.bannerInfo;
+                this.formItem.status === 1 ? this.disabledGroup='启用' : this.disabledGroup='禁用';
             }
         },
 
         methods: {
-            getStoreList() {    //获取门店列表
+            getStoreList() {    
                 let that = this;
                 let url= that.serviceurl + '/backstage/shop/pageShop';
-                let params = {};
+                let params = {
+                    
+                }
                 that
                     .$http(url, params, '', 'get')
                     .then(res => {
                         if(res.data.retCode === 0) {
                             let storeList = res.data.data;
-                            storeList.map(item =>{
-                                that.storeList.push({
+                            res.data.data.data.forEach(item =>{
+                                var obj={
                                     value: item.id,
                                     label: item.shopName,
-                                })
+                                }
+                                that.storeList.push(obj)
                             })
                         } else {
                             that.$Message.warning(res.data.retMsg);
                         }
                     })
-                    .catch(e => {
-                        that.$Message.error('请求错误');
-                    })
             },
-
             changeRodio(val) {
-                if(val === '图文编辑') {
-                    this.formItem.resType = 1;
+                if(val === '禁用') {
+                    this.formItem.status = 0;
                 } else {
-                    this.formItem.resType = 2;
+                    this.formItem.status = 1;
                 }
             },
 
             saveOperation() {
-                if(this.flag === 1) {
-                    this.addOperation();
+                let that=this;
+                
+                if(!that.formItem.shopId)
+                {
+                    that.$Message.warning('请选择门店');
+                    return false;
+                }
+                if(!that.formItem.bannerName)
+                {
+                    that.$Message.warning('图片名称不能为空');
+                    return false;
+                }
+                if(!that.formItem.imageUrl)
+                {
+                    that.$Message.warning('图片地址不能为空');
+                    return false;
+                }
+                 if(that.formItem.status==-1)
+                {
+                    that.$Message.warning('请选择状态');
+                    return false;
+                }
+                console.log(that.formItem)
+                if(that.flag == 1) {
+                    //添加
+                    that.addOperation();
                 } else {
+                    //编辑
                     this.editOperation();
                 }
             },
-
-            addOperation() {   //保存文章信息
+            addOperation() {   //添加
                 let that = this;
-                let url= that.serviceurl + '/herbsfoods/operationMgtAdd';
+                let url= that.serviceurl + '/herbsfoods/admin/uploadBannerImage';
                 that.formItem.createTime = new Date().getTime();
-                that.appResourceInfoExDto.appResourcesInfo = that.formItem;
-                let data = that.appResourceInfoExDto;
+                let data = that.formItem;
                 that
                     .$http(url, '', data, 'post')
                     .then(res => {
                         if(res.data.retCode === 0) {
-                            that.$Message.success('文章添加成功！');
-                            that.$router.push({name: 'articleManage'});
+                            that.$Message.success('轮播图添加成功！');
+                            that.$router.push({name: 'uploadBanner'});
                         } else {
                             that.$Message.warning(res.data.retMsg);
                         }
@@ -171,19 +163,17 @@
                         that.$Message.error('请求错误');
                     })
             },
-
-            editOperation() {   //修改文章信息
+            editOperation() {   //修改
                 let that = this;
-                let url= that.serviceurl + '/herbsfoods/operationMgtEdit';
+                let url= that.serviceurl + '/herbsfoods/admin/bannerImageEdit';
                 that.formItem.updateTime = new Date().getTime();
-                that.appResourceInfoExDto.appResourcesInfo = that.formItem;
-                let data = that.appResourceInfoExDto;
+                let data = that.formItem;
                 that
                     .$http(url, '', data, 'post')
                     .then(res => {
                         if(res.data.retCode === 0) {
                             that.$Message.success('修改成功！');
-                            that.$router.push({name: 'articleManage'});
+                            that.$router.push({name: 'uploadBanner'});
                         } else {
                             that.$Message.warning(res.data.retMsg);
                         }
@@ -192,13 +182,11 @@
                         that.$Message.error('请求错误');
                     })
             },
-
             goBack() {
-                this.$router.push({name: 'articleManage'});
+                this.$router.push({name: 'uploadBanner'});
             },
-
             getUploadUrl (val) {
-                this.formItem.image = val[0];
+                this.formItem.imageUrl = val[0];
             }
         }
     };

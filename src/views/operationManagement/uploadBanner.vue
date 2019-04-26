@@ -10,6 +10,18 @@
                             <Option v-for="item in stateList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                     </p>
+                    <p>
+                        门店 &nbsp;&nbsp;
+                        <Select v-model="shopId" style="width:130px">
+                            <Option v-for="item in storeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        </Select>
+                    </p>
+                    <p>
+                        页面类型 &nbsp;&nbsp;
+                        <Select v-model="typeId" style="width:130px">
+                            <Option v-for="item in typeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        </Select>
+                    </p>
                 </div>
             </div>
             <div class="m-search-btn">
@@ -37,12 +49,21 @@
                 bannerID: null,
                 bannerInfo: [],
                 iName: '',
-                state: -1,
-                stateList: [
+                shopId:"",
+                storeList:[],
+                typeId:1,
+                typeList:[
                     {
-                        value: -1,
-                        label: '全部'
-                    },
+                        value: 1,
+                        label: '首页'
+                    }
+                ],
+                state: 1,
+                stateList: [
+                    // {
+                    //     value: -1,
+                    //     label: '全部'
+                    // },
                     {
                         value: 1,
                         label: '启用'
@@ -141,7 +162,7 @@
         },
 
         created () {
-            this.getBannerList();
+            this.getStoreList();   //获取门店列表
         },
 
         methods: {
@@ -155,48 +176,47 @@
             },
 
             bannerAdd (num) {
-                // if(num === 1) {
-                //     this.$router.push({
-                //         path: '/addArticle',
-                //         query: {
-                //             flag: num,
-                //         }
-                //     })
-                // } else {
-                //     if(this.bannerID === null) {
-                //         this.$Message.warning('请先选择操作对象！');
-                //     } else {
-                //         this.$router.push({
-                //             path: '/editArticle',
-                //             query: {
-                //                 flag: num,
-                //                 bannerInfo: this.bannerInfo,
-                //             }
-                //         })
-                //     }
-                // }
+                if(num === 1) {
+                    this.$router.push({
+                        path: '/addBanner',
+                        query: {
+                            flag: num,
+                        }
+                    })
+                } else {
+                    if(this.bannerID === null) {
+                        this.$Message.warning('请先选择操作对象！');
+                    } else {
+                        this.$router.push({
+                            path: '/editBanner',
+                            query: {
+                                flag: num,
+                                bannerInfo: this.bannerInfo,
+                            }
+                        })
+                    }
+                }
             },
 
             searchSource() {//搜索
                 this.pageNo = 0;
                 this.getBannerList();
             },
-
             getBannerList() {   //获取轮播列表
                 let that = this;
                 let url = that.serviceurl + '/herbsfoods/app/getBannerImageList';
                 let status;
                 that.state === -1 ? status = '': status = that.state;
                 let params = {
-                    shopId: '',
-                    status: status,
-                    type: 1,
+                    shopId: that.shopId,
+                    status:that.state,
+                    type: that.typeId,
                 }
                 that
                     .$http(url, params, '', 'get')
                     .then(res => {
                         if(res.data.retCode === 0) {
-                            that.tableData = res.data;
+                            that.tableData = res.data.data;
                         } else {
                             that.$Message.warning(res.data.retMsg);
                         }
@@ -227,6 +247,30 @@
                         })
                 }
             },
+            getStoreList() {    
+                let that = this;
+                let url= that.serviceurl + '/backstage/shop/pageShop';
+                let params = {
+                    
+                }
+                that
+                    .$http(url, params, '', 'get')
+                    .then(res => {
+                        if(res.data.retCode === 0) {
+                            that.shopId=res.data.data.data[0].id;
+                            this.getBannerList();
+                            res.data.data.data.forEach(item =>{
+                                var obj={
+                                    value: item.id,
+                                    label: item.shopName,
+                                }
+                                that.storeList.push(obj)
+                            })
+                        } else {
+                            that.$Message.warning(res.data.retMsg);
+                        }
+                    })
+            }
         }
     };
 </script>
