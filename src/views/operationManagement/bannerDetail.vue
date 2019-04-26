@@ -106,7 +106,7 @@
             },
             changeRodio(val) {
                 if(val === '禁用') {
-                    this.formItem.status = 0;
+                    this.formItem.status = 2;
                 } else {
                     this.formItem.status = 1;
                 }

@@ -69,7 +69,7 @@
                         label: '启用'
                     },
                     {
-                        value: 0,
+                        value: 2,
                         label: '禁用'
                     }
                 ],
