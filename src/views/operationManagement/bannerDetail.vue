@@ -19,12 +19,14 @@
                     <p class="img-tips">规格尺寸：750*400</p>
                 </div>
             </FormItem>
-            
             <FormItem prop="imageLink" label="图片链接">
                 <Input v-model="formItem.imageLink" placeholder="http://"></Input>
             </FormItem>
              <FormItem label="备注"  prop="remark">
                 <Input v-model="formItem.remark" type="textarea" placeholder="30字以内" :maxlength="30" :autosize="{minRows: 4,maxRows: 5}"></Input>
+            </FormItem>
+            <FormItem prop="imageLink" label="图片排序">
+                <Input v-model="formItem.sort" type="number"></Input>
             </FormItem>
             <FormItem label="状态">
                 <RadioGroup v-model="disabledGroup" @on-change="changeRodio">
@@ -146,8 +148,9 @@
             },
             addOperation() {   //添加
                 let that = this;
-                let url= that.serviceurl + '/herbsfoods/admin/uploadBannerImage';
+                let url= that.serviceurl + '/herbsfoods/admin/bannerImageAdd';
                 that.formItem.createTime = new Date().getTime();
+                that.formItem.updateTime = new Date().getTime();
                 let data = that.formItem;
                 that
                     .$http(url, '', data, 'post')

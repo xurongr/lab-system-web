@@ -127,6 +127,11 @@
                         key: 'remark'
                     },
                     {
+                        title: '图片排序',
+                        align: 'center',
+                        key: 'sort'
+                    },
+                    {
                         title: '状态',
                         align: 'center',
                         key: 'status',
