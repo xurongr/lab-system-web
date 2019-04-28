@@ -258,7 +258,7 @@
         methods: {
             getLevelList() {    //分页获取等级列表
                 let that = this;
-                let url = this.serviceurl + '/backstage/user/pageLevelManage';
+                let url = this.serviceurl + '/backstage/level/pageLevelManage';
                 let params = {
                     pageNo: that.pageNo1,
                     pageSize: 10,

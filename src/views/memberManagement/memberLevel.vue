@@ -403,7 +403,7 @@
 
             getLevelList() {     //分页获取等级列表
                 let that = this;
-                let url = this.serviceurl + '/backstage/user/pageLevelManage';
+                let url = this.serviceurl + '/backstage/level/pageLevelManage';
                 let status;
                 if(that.status === 0) { status = ''} else { status = that.status}
                 let params = {
@@ -443,7 +443,7 @@
 
             addLevel() {    //新增等级、修改等级信息、禁用、启用
                 let that = this;
-                let url = this.serviceurl + '/backstage/user/addOrModifyLevel';
+                let url = this.serviceurl + '/backstage/level/addOrModifyLevel';
                 let data = that.levelManageDto;
                 that
                     .$http(url, '', data, "post")
@@ -483,7 +483,7 @@
                 if(that.levelId === null) {
                     that.$Message.warning('请先选择等级!');
                 } else {
-                    let url = this.serviceurl + '/backstage/user/delLevel';
+                    let url = this.serviceurl + '/backstage/level/delLevel';
                     let params = {levelId: that.levelId};
                     that
                         .$http(url, params, '', "get")
@@ -503,7 +503,7 @@
 
             getLevel() {   //升级规则，获取全部等级
                 let that = this;
-                let url = this.serviceurl + '/backstage/user/pageLevelManage';
+                let url = this.serviceurl + '/backstage/level/pageUpgrade';
                 let params = {
                     pageNo: that.pageNo1,
                     pageSize: 10,
@@ -538,7 +538,7 @@
 
             submitUpGrade() {   // 新增、编辑 会员升级规则
                 let that = this;
-                let url = this.serviceurl + '/backstage/user/addOrModifyUpgrade';
+                let url = this.serviceurl + '/backstage/level/addOrModifyUpgrade';
                 if(that.flag === 1) {that.levelUpgradeRule.createTime = new Date().getTime()}
                 if(that.flag === 2 || that.flag === 3) {that.levelUpgradeRule.updateTime = new Date().getTime()}
                 let data = that.levelUpgradeRule;
@@ -576,7 +576,7 @@
 
             getGradeList() {  //分页获取会员升级规则
                 let that = this;
-                let url = this.serviceurl + '/backstage/user/pageUpgrade';
+                let url = this.serviceurl + '/backstage/level/pageUpgrade';
                 let status;
                 if(that.status === 0) { status = ''} else { status = that.status}
                 let params = {
@@ -616,7 +616,7 @@
                 if(null == that.levelId || undefined == that.levelId) {
                     that.$Message.warning('请先选择等级!');
                 } else {
-                    let url = this.serviceurl + '/backstage/user/delUpgrade?levelId='+ that.levelId;
+                    let url = this.serviceurl + '/backstage/level/delUpgrade?levelId='+ that.levelId;
 //                    let data = {levelId: that.levelId};
                     that
                         .$http(url, '', '', "post")

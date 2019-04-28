@@ -179,7 +179,7 @@
 
             getLevel() {   //获取全部等级
                 let that = this;
-                let url = this.serviceurl + '/backstage/user/pageLevelManage';
+                let url = this.serviceurl + '/backstage/level/pageLevelManage';
                 let params = {
                     pageNo: that.pageNo1,
                     pageSize: 10,

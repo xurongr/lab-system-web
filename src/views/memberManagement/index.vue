@@ -202,7 +202,7 @@
 
             getUserList() {      //获取会员列表
                 let that = this;
-                let url = this.serviceurl + '/backstage/level/pageUser';
+                let url = this.serviceurl + '/backstage/userInfo/pageUser';
                 let levelId;
                 let status;
                 if(that.level === -1) {levelId = ''} else {levelId = that.level}
@@ -236,7 +236,7 @@
 
             getLevelList() {    //分页获取等级列表
                 let that = this;
-                let url = this.serviceurl + '/backstage/user/pageLevelManage';
+                let url = this.serviceurl + '/backstage/level/pageLevelManage';
                 let params = {
                     pageNo: that.pageNo1,
                     pageSize: 10,
@@ -279,7 +279,7 @@
 
             levelSetBtn() {     //设置用户等级
                 let that = this;
-                let url = that.serviceurl + '/backstage/level/setUserLevel';
+                let url = that.serviceurl + '/backstage/userInfo/setUserLevel';
                 let params;
                 if(that.parentId === null || that.parentId === 'undefined' || that.parentId === '') {
                     params = {
@@ -317,7 +317,7 @@
                     this.$Message.warning('请选择用户！')
                 } else {
                     let that = this;
-                    let url = that.serviceurl + '/backstage/level/mdifyUserStatus';
+                    let url = that.serviceurl + '/backstage/userInfo/mdifyUserStatus';
                     let params = {
                         userId: that.userId,
                         status: num,
