@@ -27,15 +27,15 @@ VueAMap.initAMapApiLoader({
     v: '1.4.4'
 });
 
-axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
-if (Cookies.get('token')) {
-    axios.defaults.headers.common['Authorization'] = Cookies.get('token');
-}
+// axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
+// if (Cookies.get('token')) {
+//     axios.defaults.headers.common['Authorization'] = Cookies.get('token');
+// }
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$http = http;
 Vue.prototype.Cookies = Cookies;
-Vue.prototype.serviceurl = config.serviceurl;
+Vue.prototype.BaseConfig = config.serviceurl;
 Vue.prototype.formatDate = formatDate;
 Vue.prototype.timestamp = timestamp;
 
@@ -55,7 +55,7 @@ new Vue({
     },
     created () {
     // window.document.title = Cookies.get("name");
-        window.document.title = '百草膳';
+        window.document.title = '实验室系统';
         let tagsList = [];
         appRouter.map(item => {
             if (item.children.length <= 1) {

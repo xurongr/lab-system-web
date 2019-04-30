@@ -31,7 +31,7 @@ console.log({ domain, urlHead, port });
 
 if (domain === 'localhost' || domain === '127.0.0.1') {
     // serviceurl = 'http://192.168.1.9:7777/api';
-    serviceurl = 'http://192.168.1.9:7777/smallWX';
+    serviceurl = 'http://localhost:8888';
     // loginUrl = 'http://192.168.1.9:8888/finance/?company=xhjlb#/login';
     // } else if (domain.toLowerCase().indexOf("192.168") >= 0) {
     //   serviceurl = `${urlHead}//${domain}/api${port}`;
@@ -39,7 +39,7 @@ if (domain === 'localhost' || domain === '127.0.0.1') {
     //   loginUrl = window.location.href;
 } else {
     // serviceurl = `${urlHead}//${domain}${port}/api`;
-    serviceurl = `${urlHead}//${domain}${port}/smallWX`;
+    serviceurl = `http://localhost:8888`;
     context = '/t';
     loginUrl = window.location.href;
 }
